@@ -71,6 +71,44 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-初见二进制-汇编-1-3栈的初步认识-堆栈" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-3%E6%A0%88%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86-%E5%A0%86%E6%A0%88/" class="article-date">
+  <time class="dt-published" datetime="2025-11-08T18:27:27.000Z" itemprop="datePublished">2025-11-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-3%E6%A0%88%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86-%E5%A0%86%E6%A0%88/">初见二进制/汇编/1.3栈的初步认识_堆栈</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-3%E6%A0%88%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86-%E5%A0%86%E6%A0%88/" data-id="cmhqmg5kl0000eswehj726d06" data-title="初见二进制/汇编/1.3栈的初步认识_堆栈" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-初见二进制-汇编-1-2通用寄存器-认识指令-内存读写" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-2%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8-%E8%AE%A4%E8%AF%86%E6%8C%87%E4%BB%A4-%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/" class="article-date">
@@ -93,154 +131,83 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <h2 id="根据教程视频，以下均以32位计算机为例"><a href="#根据教程视频，以下均以32位计算机为例" class="headerlink" title="根据教程视频，以下均以32位计算机为例"></a>根据<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1w54y1y7Di?spm_id_from=333.788.videopod.episodes&vd_source=6c7f9b089a676f27a9991651bb982255&p=6">教程</a>视频，以下均以32位计算机为例</h2><h1 id="一-通用寄存器（32位计算机）"><a href="#一-通用寄存器（32位计算机）" class="headerlink" title="一.通用寄存器（32位计算机）"></a>一.通用寄存器（32位计算机）</h1><table>
+<thead>
+<tr>
+<th>32位</th>
+<th>16位</th>
+<th>8位低↓高</th>
+<th>编号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EAX</td>
+<td>AX</td>
+<td>AL</td>
+<td>0</td>
+</tr>
+<tr>
+<td>ECX</td>
+<td>CX</td>
+<td>CL</td>
+<td>1</td>
+</tr>
+<tr>
+<td>EDX</td>
+<td>DX</td>
+<td>DL</td>
+<td>2</td>
+</tr>
+<tr>
+<td>EBX</td>
+<td>BX</td>
+<td>BL</td>
+<td>3</td>
+</tr>
+<tr>
+<td>ESP</td>
+<td>SP</td>
+<td>AH</td>
+<td>4</td>
+</tr>
+<tr>
+<td>EBP</td>
+<td>BP</td>
+<td>CH</td>
+<td>5</td>
+</tr>
+<tr>
+<td>ESI</td>
+<td>SI</td>
+<td>DH</td>
+<td>6</td>
+</tr>
+<tr>
+<td>EDI</td>
+<td>DI</td>
+<td>BH</td>
+<td>7</td>
+</tr>
+</tbody></table>
+<p>###ps：eip显示的是当前程序运行处<br><code>其它寄存器主要用途在此先不做介绍</code></p>
+<p>为何分出不同位？<br>减小不必要的损耗，8位能表示的就不必用32位表示。</p>
+<p>##寄存器结构</p>
+<h1 id="二-常用汇编指令"><a href="#二-常用汇编指令" class="headerlink" title="二.常用汇编指令"></a>二.常用汇编指令</h1><p>##1.mov</p>
+<p>##2.add</p>
+<p>##3.sub</p>
+<p>###4.and</p>
+<p>###5.or</p>
+<p>###6.xor</p>
+<p>###7.not</p>
+<h1 id="三-内存"><a href="#三-内存" class="headerlink" title="三.内存"></a>三.内存</h1><p>简要介绍</p>
+<p>##1.内存格式</p>
+<p>##2.读写内存</p>
+<p>##3.内存寻址</p>
+
       
     </div>
     <footer class="article-footer">
       <a data-url="http://example.com/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-2%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8-%E8%AE%A4%E8%AF%86%E6%8C%87%E4%BB%A4-%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/" data-id="cmhqlmkqq0000rgweei6h7doj" data-title="初见二进制/汇编/1.2通用寄存器_认识指令_内存读写" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-moban" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/11/09/moban/" class="article-date">
-  <time class="dt-published" datetime="2025-11-08T16:00:14.000Z" itemprop="datePublished">2025-11-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/11/09/moban/">moban</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="MDTU-简介"><a href="#MDTU-简介" class="headerlink" title="MDTU 简介"></a>MDTU 简介</h1><p>Markdown Devtool，简称 <code>MDTU</code>，中文名 <code>码途编辑器</code>。是一款基于 <a target="_blank" rel="noopener" href="https://github.com/bytedance/bytemd">bytemd</a> 由山月开发的支持微信样式的 Markdown 编辑器。</p>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p><strong>有序列表</strong></p>
-<ol>
-<li>天干<ol>
-<li>甲</li>
-<li>乙</li>
-<li>丙</li>
-<li>丁</li>
-</ol>
-</li>
-<li>地支<ol>
-<li>子</li>
-<li>丑</li>
-<li>寅</li>
-<li>卯</li>
-</ol>
-</li>
-</ol>
-<p><strong>无序列表</strong></p>
-<ul>
-<li>天干<ul>
-<li>甲</li>
-<li>乙</li>
-<li>丙</li>
-<li>丁</li>
-</ul>
-</li>
-<li>地支<ul>
-<li>子</li>
-<li>丑</li>
-<li>寅</li>
-<li>卯</li>
-</ul>
-</li>
-</ul>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><blockquote>
-<p>欲穷千里目，更上一层楼</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>举头望明月，低头思故乡</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>今春看又过，何日是归年</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p><strong>内联代码</strong></p>
-<p><code>import</code></p>
-<p><strong>代码段</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如何实现一个防抖函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">debounce</span> (<span class="params">f, wait</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> timer</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">clearTimeout</span>(timer)</span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">f</span>(...args), wait)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>以下是关于标题的样式</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><p>多主题被我开源在了 Github 仓库: <a target="_blank" rel="noopener" href="https://github.com/shfshanyue/markdown-theme">markdown-theme</a>。</p>
-<table>
-<thead>
-<tr>
-<th>Theme</th>
-<th>中文</th>
-<th>Author</th>
-<th>Preview</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>github</td>
-<td>-</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/sindresorhus/github-markdown-css">sindresorhus&#x2F;github-markdown-css</a></td>
-<td><a target="_blank" rel="noopener" href="https://markdown-theme.vercel.app/#github">Preview</a></td>
-</tr>
-<tr>
-<td>shanchui</td>
-<td>山吹</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/elyhg">#66CCFF</a></td>
-<td><a target="_blank" rel="noopener" href="https://markdown-theme.vercel.app/#shanchui">Preview</a></td>
-</tr>
-<tr>
-<td>shanyue</td>
-<td>山月</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/shfshanyue">shanyue</a></td>
-<td><a target="_blank" rel="noopener" href="https://npm.devtool.tech/lodash">Preview</a></td>
-</tr>
-<tr>
-<td>condensed-night-purple</td>
-<td>凝夜紫</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/Geekhyt">童欧巴</a></td>
-<td><a target="_blank" rel="noopener" href="https://markdown-theme.vercel.app/#condensed-night-purple">Preview</a></td>
-</tr>
-</tbody></table>
-<h2 id="外链"><a href="#外链" class="headerlink" title="外链"></a>外链</h2><p>这里是<a target="_blank" rel="noopener" href="https://shanyue.tech/">山月的博客</a>，这里是山月进行了多年面试总结的<a target="_blank" rel="noopener" href="https://q.shanyue.tech/">前端面试题</a>。</p>
-<p>您可以点击编辑器右上角进行<strong>微信外链转脚注</strong>与<strong>微信外链转二维码</strong>，并点击右上角微信图标进行复制。</p>
-<p>这里是<a href="shanyue.tech">山月的博客 (不显示二维码)</a>，这里是山月进行了多年面试总结的<a href="q.shanyue.tech">前端面试题 (不显示二维码)</a>。</p>
-<p>如果链接地址不是以 <code>http</code> 开头，则不会显示它的二维码。</p>
-<h2 id="URL-to-Markdown"><a href="#URL-to-Markdown" class="headerlink" title="URL to Markdown"></a>URL to Markdown</h2><p>您可以点击 MDTU 编辑器右上角<strong>链接采集按钮</strong>，输入 URL 回车确认可从 URL 中获取 Markdown。</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/23487fbd375e42c8b1ac6410c89fb656~tplv-k3u1fbpfcp-watermark.image" alt="链接采集"></p>
-<h2 id="自动编号、插入目录、插入导图"><a href="#自动编号、插入目录、插入导图" class="headerlink" title="自动编号、插入目录、插入导图"></a>自动编号、插入目录、插入导图</h2><p>您可以点击 MDTU 编辑器左上角<strong>自动编号</strong>，将会对一级标题、二级标题、三级标题进行自动编号。</p>
-<h2 id="使用模板"><a href="#使用模板" class="headerlink" title="使用模板"></a>使用模板</h2><p>您可以点击 MDTU 编辑器 <code>使用模板 -&gt; 管理模板</code> 按钮，配置自己的模板。</p>
-<p>使用占位符 <code>&#123;&#123; content &#125;&#125;</code> 代表正文内容。</p>
-<h2 id="方格背景"><a href="#方格背景" class="headerlink" title="方格背景"></a>方格背景</h2><p>您可以点击 MDTU 编辑器 <code>UI -&gt; 方格背景</code>，将会对该主题添加上方格背景。</p>
-<h2 id="赞赏"><a href="#赞赏" class="headerlink" title="赞赏"></a>赞赏</h2><p>如果该工具对你有所帮助，可以请我喝一瓶<del>农夫山泉</del>冰露 (别人说农夫山泉太奢侈，这里改成冰露吧)</p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/263bac43ead842bab0efbf6a431f4e32~tplv-k3u1fbpfcp-watermark.image" alt="请我喝一瓶冰露"></p>
-<h2 id="交流"><a href="#交流" class="headerlink" title="交流"></a>交流</h2><p>欢迎扫码添加我的微信，加入 MDTU 编辑器交流群</p>
-<p><img src="https://shanyue.tech/wechat.jpeg" alt="shanyue94"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/11/09/moban/" data-id="cmhqh0ucb0000v0we3fg110u5" data-title="moban" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -416,57 +383,6 @@ key：54
 
 
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/10/19/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2025-10-19T08:51:34.962Z" itemprop="datePublished">2025-10-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/10/19/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/10/19/hello-world/" data-id="cmgxgy7ze0000lcwe1ezubqcc" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
 </section>
@@ -512,11 +428,11 @@ key：54
       <ul>
         
           <li>
-            <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-2%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8-%E8%AE%A4%E8%AF%86%E6%8C%87%E4%BB%A4-%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/">初见二进制/汇编/1.2通用寄存器_认识指令_内存读写</a>
+            <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-3%E6%A0%88%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86-%E5%A0%86%E6%A0%88/">初见二进制/汇编/1.3栈的初步认识_堆栈</a>
           </li>
         
           <li>
-            <a href="/2025/11/09/moban/">moban</a>
+            <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-2%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8-%E8%AE%A4%E8%AF%86%E6%8C%87%E4%BB%A4-%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/">初见二进制/汇编/1.2通用寄存器_认识指令_内存读写</a>
           </li>
         
           <li>
@@ -525,10 +441,6 @@ key：54
         
           <li>
             <a href="/2025/10/19/ABOUT-ME-LXIOS/">ABOUT ME, LXIOS</a>
-          </li>
-        
-          <li>
-            <a href="/2025/10/19/hello-world/">Hello World</a>
           </li>
         
       </ul>
