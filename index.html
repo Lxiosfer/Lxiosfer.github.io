@@ -71,6 +71,44 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-初见二进制-汇编-1-2通用寄存器-认识指令-内存读写" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-2%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8-%E8%AE%A4%E8%AF%86%E6%8C%87%E4%BB%A4-%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/" class="article-date">
+  <time class="dt-published" datetime="2025-11-08T18:08:13.000Z" itemprop="datePublished">2025-11-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-2%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8-%E8%AE%A4%E8%AF%86%E6%8C%87%E4%BB%A4-%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/">初见二进制/汇编/1.2通用寄存器_认识指令_内存读写</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-2%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8-%E8%AE%A4%E8%AF%86%E6%8C%87%E4%BB%A4-%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/" data-id="cmhqlmkqq0000rgweei6h7doj" data-title="初见二进制/汇编/1.2通用寄存器_认识指令_内存读写" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-moban" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/11/09/moban/" class="article-date">
@@ -236,7 +274,10 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="根据教程视频，以下均以32位计算机为例"><a href="#根据教程视频，以下均以32位计算机为例" class="headerlink" title="根据教程视频，以下均以32位计算机为例"></a>根据<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1w54y1y7Di?spm_id_from=333.788.videopod.episodes&vd_source=6c7f9b089a676f27a9991651bb982255&p=6">教程</a>视频，以下均以32位计算机为例</h2><h1 id="一-数据宽度"><a href="#一-数据宽度" class="headerlink" title="一.数据宽度"></a>一.数据宽度</h1><p>Markdown Devtool，简称 <code>MDTU</code>，中文名 <code>码途编辑器</code>。是一款基于 <a target="_blank" rel="noopener" href="https://github.com/bytedance/bytemd">bytemd</a> 由山月开发的支持微信样式的 Markdown 编辑器。</p>
+        <h2 id="根据教程视频，以下均以32位计算机为例"><a href="#根据教程视频，以下均以32位计算机为例" class="headerlink" title="根据教程视频，以下均以32位计算机为例"></a>根据<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1w54y1y7Di?spm_id_from=333.788.videopod.episodes&vd_source=6c7f9b089a676f27a9991651bb982255&p=6">教程</a>视频，以下均以32位计算机为例</h2><h1 id="一-数据宽度"><a href="#一-数据宽度" class="headerlink" title="一.数据宽度"></a>一.数据宽度</h1><p>4位→可表示1位16进制0至F，以此类推。<br>8位→2位16,00至FF<br>16位→4位16,0000至FFFF<br>32位→8位16,00000000至FFFFFFFF</p>
+<p>人为定义有&#x2F;无符号</p>
+<p>0 1 2 3 4 5 6 7 8 9 A B C D E F<br>每个数怎么表示是可以定义来的，如<code>顺序定义为0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15</code>或<code>补码定义0 1 2 3 4 5 6 7 -8 -7 -6 -5 -4 -3 -2 -1</code>此处不做详解</p>
+<p>”1开头为负数“的理解则代表后半部分能表示的数以一开头，而刚好此部分全被定义为负数。</p>
 <h2 id="简单了解计量单位"><a href="#简单了解计量单位" class="headerlink" title="简单了解计量单位"></a>简单了解计量单位</h2><table>
 <thead>
 <tr>
@@ -315,21 +356,6 @@ key：54
 </code></pre>
 <p>加密过程：<br>   00100000(取20的8位明文为例)<br>^01010100(key)<br>  01110100(密文）</p>
 <p>解密过程：<br>   01110100(key)<br>^01010100(密文)<br>  00100000(明文)</p>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><blockquote>
-<p>欲穷千里目，更上一层楼</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>举头望明月，低头思故乡</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>今春看又过，何日是归年</p>
-</blockquote>
-</blockquote>
-</blockquote>
 <h2 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h2><p><code>mov</code></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将2赋值给eax寄存器</span></span><br><span class="line">mov eax,<span class="number">2</span></span><br></pre></td></tr></table></figure>
 
@@ -484,6 +510,10 @@ key：54
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-2%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8-%E8%AE%A4%E8%AF%86%E6%8C%87%E4%BB%A4-%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/">初见二进制/汇编/1.2通用寄存器_认识指令_内存读写</a>
+          </li>
         
           <li>
             <a href="/2025/11/09/moban/">moban</a>
