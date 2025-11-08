@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>初见二进制/汇编/1.1数据宽度_逻辑运算 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="根据教程视频，以下均以32位计算机为例一.数据宽度Markdown Devtool，简称 MDTU，中文名 码途编辑器。是一款基于 bytemd 由山月开发的支持微信样式的 Markdown 编辑器。 简单了解计量单位   英文 中文 换算关系    BIT 位 基础构成单元,一般以二进制呈现，为0或1   BYTE 字节 1字节&#x3D;8位   WORD 字 此情况下1字通常为16位，即为2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初见二进制&#x2F;汇编&#x2F;1.1数据宽度_逻辑运算">
+<meta property="og:url" content="http://example.com/2025/11/08/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-1%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="根据教程视频，以下均以32位计算机为例一.数据宽度Markdown Devtool，简称 MDTU，中文名 码途编辑器。是一款基于 bytemd 由山月开发的支持微信样式的 Markdown 编辑器。 简单了解计量单位   英文 中文 换算关系    BIT 位 基础构成单元,一般以二进制呈现，为0或1   BYTE 字节 1字节&#x3D;8位   WORD 字 此情况下1字通常为16位，即为2">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-11-08T15:30:32.000Z">
+<meta property="article:modified_time" content="2025-11-08T16:55:11.393Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="总结">
+<meta property="article:tag" content="心得">
+<meta property="article:tag" content="课报">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-初见二进制-汇编-1-1数据宽度-逻辑运算" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/11/08/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-1%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97/" class="article-date">
+  <time class="dt-published" datetime="2025-11-08T15:30:32.000Z" itemprop="datePublished">2025-11-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      初见二进制/汇编/1.1数据宽度_逻辑运算
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="根据教程视频，以下均以32位计算机为例"><a href="#根据教程视频，以下均以32位计算机为例" class="headerlink" title="根据教程视频，以下均以32位计算机为例"></a>根据<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1w54y1y7Di?spm_id_from=333.788.videopod.episodes&vd_source=6c7f9b089a676f27a9991651bb982255&p=6">教程</a>视频，以下均以32位计算机为例</h2><h1 id="一-数据宽度"><a href="#一-数据宽度" class="headerlink" title="一.数据宽度"></a>一.数据宽度</h1><p>Markdown Devtool，简称 <code>MDTU</code>，中文名 <code>码途编辑器</code>。是一款基于 <a target="_blank" rel="noopener" href="https://github.com/bytedance/bytemd">bytemd</a> 由山月开发的支持微信样式的 Markdown 编辑器。</p>
+<h2 id="简单了解计量单位"><a href="#简单了解计量单位" class="headerlink" title="简单了解计量单位"></a>简单了解计量单位</h2><table>
+<thead>
+<tr>
+<th>英文</th>
+<th>中文</th>
+<th>换算关系</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BIT</td>
+<td>位</td>
+<td>基础构成单元,一般以二进制呈现，为0或1</td>
+</tr>
+<tr>
+<td>BYTE</td>
+<td>字节</td>
+<td>1字节&#x3D;8位</td>
+</tr>
+<tr>
+<td>WORD</td>
+<td>字</td>
+<td>此情况下1字通常为16位，即为2字节</td>
+</tr>
+<tr>
+<td>DWORD</td>
+<td>双字</td>
+<td>1字*2，通常为4字节</td>
+</tr>
+</tbody></table>
+<h1 id="二-逻辑运算"><a href="#二-逻辑运算" class="headerlink" title="二.逻辑运算"></a>二.逻辑运算</h1><table>
+<thead>
+<tr>
+<th>英文</th>
+<th>中文</th>
+<th>符号</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OR</td>
+<td>或</td>
+<td>“</td>
+<td>“</td>
+</tr>
+<tr>
+<td>AND</td>
+<td>与</td>
+<td>&amp;</td>
+<td>置0&#x2F;进位</td>
+</tr>
+<tr>
+<td>XOR</td>
+<td>异或</td>
+<td>^</td>
+<td>位加法，实质2的模运算，加密</td>
+</tr>
+<tr>
+<td>NOT</td>
+<td>非</td>
+<td>!</td>
+<td>翻转</td>
+</tr>
+</tbody></table>
+<h2 id="以4位为例"><a href="#以4位为例" class="headerlink" title="以4位为例"></a>以4位为例</h2><h3 id="1-计算2-3"><a href="#1-计算2-3" class="headerlink" title="1.计算2+3"></a>1.计算2+3</h3><p>容器：<br>X：0010(2)<br>Y：0011(3)</p>
+<p>对每位:<br>    0010<br> ^	0011<br>    0001<br><code>R：0001</code></p>
+<p>进位:<br>    0010<br> &amp;	0011<br>    0010<br><code>同时0010&lt;&lt;1==0100(左移1位)</code><br>    此时0100！&#x3D;0000，所以继续运算</p>
+<p>R→X:0001<br>Y:0100</p>
+<p>对每位:<br>    0001<br>  ^	0100<br>    0101<br><code>R：0101</code></p>
+<p>进位:<br>    0001<br> &amp;	0100<br>    0000<br><code>同时0000&lt;&lt;1==0000(左移1位),此操作后仍为0则计算完毕，此时R的0101即为结果</code></p>
+<h5 id="所以2-3-5（0101）"><a href="#所以2-3-5（0101）" class="headerlink" title="所以2+3&#x3D;5（0101）"></a>所以2+3&#x3D;5（0101）</h5><h3 id="2-计算2-3"><a href="#2-计算2-3" class="headerlink" title="2.计算2-3"></a>2.计算2-3</h3><p>同理，X:0010<br>Y:0011→（进行补码运算，模16）1101</p>
+<p>对每位:<br>    0010<br>  ^	1101<br>    1111<br><code>R：1111</code></p>
+<p>进位:<br>    0010<br> &amp;	1101<br>    0000<br><code>同时0000&lt;&lt;1==0000(左移1位)，此操作后进位计算完毕</code></p>
+<h5 id="所以2-3-1（1111为补码表示，对应原码-1）"><a href="#所以2-3-1（1111为补码表示，对应原码-1）" class="headerlink" title="所以2-3&#x3D;-1（1111为补码表示，对应原码-1）"></a>所以2-3&#x3D;-1（1111为补码表示，对应原码-1）</h5><h3 id="3-如何获取某value的第N位？"><a href="#3-如何获取某value的第N位？" class="headerlink" title="3.如何获取某value的第N位？"></a>3.如何获取某value的第N位？</h3><p>  利用&amp;操作置0：<br>    10001111<br>  &amp;	00001000<br>    00001000</p>
+<h3 id="4-利用xor加密"><a href="#4-利用xor加密" class="headerlink" title="4.利用xor加密"></a>4.利用xor加密</h3><pre><code>明：2015
+key：54
+</code></pre>
+<p>加密过程：<br>   00100000(取20的8位明文为例)<br>^01010100(key)<br>  01110100(密文）</p>
+<p>解密过程：<br>   01110100(key)<br>^01010100(密文)<br>  00100000(明文)</p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><blockquote>
+<p>欲穷千里目，更上一层楼</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>举头望明月，低头思故乡</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>今春看又过，何日是归年</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h2><p><code>mov</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将2赋值给eax寄存器</span></span><br><span class="line">mov eax,<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/11/08/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-1%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97/" data-id="cmhqgdlh90000s4we4k3sdxm1" data-title="初见二进制/汇编/1.1数据宽度_逻辑运算" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BF%83%E5%BE%97/" rel="tag">心得</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BE%E6%8A%A5/" rel="tag">课报</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/11/09/moban/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          moban
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/10/19/ABOUT-ME-LXIOS/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ABOUT ME, LXIOS</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%96%B5%E5%96%B5%E5%96%B5/" rel="tag">喵喵喵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%83%E5%BE%97/" rel="tag">心得</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%90%8C%E6%96%B0/" rel="tag">萌新</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BE%E6%8A%A5/" rel="tag">课报</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/%E5%96%B5%E5%96%B5%E5%96%B5/" style="font-size: 10px;">喵喵喵</a> <a href="/tags/%E5%BF%83%E5%BE%97/" style="font-size: 10px;">心得</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 10px;">总结</a> <a href="/tags/%E8%90%8C%E6%96%B0/" style="font-size: 10px;">萌新</a> <a href="/tags/%E8%AF%BE%E6%8A%A5/" style="font-size: 10px;">课报</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">November 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/11/09/moban/">moban</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/08/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-1%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97/">初见二进制/汇编/1.1数据宽度_逻辑运算</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/19/ABOUT-ME-LXIOS/">ABOUT ME, LXIOS</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/19/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
