@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="http://example.com/rss.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2025-11-08T19:08:48.541Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>密码相关算法/1.1欧几里得算法_贝祖定理_拓展欧几里得算法</title>
+    <link href="http://example.com/2025/11/09/%E5%AF%86%E7%A0%81%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95-1-1%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95-%E8%B4%9D%E7%A5%96%E5%AE%9A%E7%90%86-%E6%8B%93%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95/"/>
+    <id>http://example.com/2025/11/09/%E5%AF%86%E7%A0%81%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95-1-1%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95-%E8%B4%9D%E7%A5%96%E5%AE%9A%E7%90%86-%E6%8B%93%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95/</id>
+    <published>2025-11-08T19:08:48.000Z</published>
+    <updated>2025-11-08T19:08:48.541Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>密码前置数学/1.0模运算</title>
+    <link href="http://example.com/2025/11/09/%E5%AF%86%E7%A0%81%E5%89%8D%E7%BD%AE%E6%95%B0%E5%AD%A6-1-0%E6%A8%A1%E8%BF%90%E7%AE%97/"/>
+    <id>http://example.com/2025/11/09/%E5%AF%86%E7%A0%81%E5%89%8D%E7%BD%AE%E6%95%B0%E5%AD%A6-1-0%E6%A8%A1%E8%BF%90%E7%AE%97/</id>
+    <published>2025-11-08T19:03:44.000Z</published>
+    <updated>2025-11-08T19:03:44.637Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>密码基础/1.0古典密码</title>
+    <link href="http://example.com/2025/11/09/%E5%AF%86%E7%A0%81%E5%9F%BA%E7%A1%80-1-0%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/"/>
+    <id>http://example.com/2025/11/09/%E5%AF%86%E7%A0%81%E5%9F%BA%E7%A1%80-1-0%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/</id>
+    <published>2025-11-08T19:02:30.000Z</published>
+    <updated>2025-11-08T19:02:30.314Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>初见二进制/汇编/1.5堆栈提升_堆栈图</title>
+    <link href="http://example.com/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-5%E5%A0%86%E6%A0%88%E6%8F%90%E5%8D%87-%E5%A0%86%E6%A0%88%E5%9B%BE/"/>
+    <id>http://example.com/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-5%E5%A0%86%E6%A0%88%E6%8F%90%E5%8D%87-%E5%A0%86%E6%A0%88%E5%9B%BE/</id>
+    <published>2025-11-08T18:59:33.000Z</published>
+    <updated>2025-11-08T18:59:33.323Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>初见二进制/汇编/1.4标志寄存器_JCC</title>
+    <link href="http://example.com/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-4%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8-JCC/"/>
+    <id>http://example.com/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-4%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8-JCC/</id>
+    <published>2025-11-08T18:50:11.000Z</published>
+    <updated>2025-11-08T19:01:20.364Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="根据教程视频，以下均以32位计算机为例"><a href="#根据教程视频，以下均以32位计算机为例" class="headerlink" title="根据教程视频，以下均以32位计算机为例"></a>根据<a href="https://www.bilibili.com/video/BV1w54y1y7Di?spm_id_from=333.788.videopod.episodes&vd_source=6c7f9b089a676f27a9991651bb982255&p=6">教程</a>视频，以下均以32位计算机为例</h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;根据教程视频，以下均以32位计算机为例&quot;&gt;&lt;a href=&quot;#根据教程视频，以下均以32位计算机为例&quot; class=&quot;headerlink&quot; title=&quot;根据教程视频，以下均以32位计算机为例&quot;&gt;&lt;/a&gt;根据&lt;a href=&quot;https://www.bilibi</summary>
+      
+    
+    
+    
+    
+    <category term="总结" scheme="http://example.com/tags/%E6%80%BB%E7%BB%93/"/>
+    
+    <category term="汇编" scheme="http://example.com/tags/%E6%B1%87%E7%BC%96/"/>
+    
+    <category term="课报" scheme="http://example.com/tags/%E8%AF%BE%E6%8A%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初见二进制/汇编/1.3栈的初步认识_堆栈</title>
+    <link href="http://example.com/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-3%E6%A0%88%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86-%E5%A0%86%E6%A0%88/"/>
+    <id>http://example.com/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-3%E6%A0%88%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86-%E5%A0%86%E6%A0%88/</id>
+    <published>2025-11-08T18:27:27.000Z</published>
+    <updated>2025-11-08T19:01:22.115Z</updated>
+    
+    <content type="html"><![CDATA[<p>###结合wiki来简单认识<a href="https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/stack-intro/">栈</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;###结合wiki来简单认识&lt;a href=&quot;https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/stack-intro/&quot;&gt;栈&lt;/a&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="总结" scheme="http://example.com/tags/%E6%80%BB%E7%BB%93/"/>
+    
+    <category term="汇编" scheme="http://example.com/tags/%E6%B1%87%E7%BC%96/"/>
+    
+    <category term="课报" scheme="http://example.com/tags/%E8%AF%BE%E6%8A%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初见二进制/汇编/1.2通用寄存器_认识指令_内存读写</title>
+    <link href="http://example.com/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-2%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8-%E8%AE%A4%E8%AF%86%E6%8C%87%E4%BB%A4-%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/"/>
+    <id>http://example.com/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-2%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8-%E8%AE%A4%E8%AF%86%E6%8C%87%E4%BB%A4-%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/</id>
+    <published>2025-11-08T18:08:13.000Z</published>
+    <updated>2025-11-08T19:01:24.107Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="根据教程视频，以下均以32位计算机为例"><a href="#根据教程视频，以下均以32位计算机为例" class="headerlink" title="根据教程视频，以下均以32位计算机为例"></a>根据<a href="https://www.bilibili.com/video/BV1w54y1y7Di?spm_id_from=333.788.videopod.episodes&vd_source=6c7f9b089a676f27a9991651bb982255&p=6">教程</a>视频，以下均以32位计算机为例</h2><h1 id="一-通用寄存器（32位计算机）"><a href="#一-通用寄存器（32位计算机）" class="headerlink" title="一.通用寄存器（32位计算机）"></a>一.通用寄存器（32位计算机）</h1><table><thead><tr><th>32位</th><th>16位</th><th>8位低↓高</th><th>编号</th></tr></thead><tbody><tr><td>EAX</td><td>AX</td><td>AL</td><td>0</td></tr><tr><td>ECX</td><td>CX</td><td>CL</td><td>1</td></tr><tr><td>EDX</td><td>DX</td><td>DL</td><td>2</td></tr><tr><td>EBX</td><td>BX</td><td>BL</td><td>3</td></tr><tr><td>ESP</td><td>SP</td><td>AH</td><td>4</td></tr><tr><td>EBP</td><td>BP</td><td>CH</td><td>5</td></tr><tr><td>ESI</td><td>SI</td><td>DH</td><td>6</td></tr><tr><td>EDI</td><td>DI</td><td>BH</td><td>7</td></tr></tbody></table><h3 id="ps：eip显示的是当前程序运行处"><a href="#ps：eip显示的是当前程序运行处" class="headerlink" title="ps：eip显示的是当前程序运行处"></a>ps：eip显示的是当前程序运行处</h3><p><code>其它寄存器主要用途在此先不做介绍</code></p><p>为何分出不同位？<br>减小不必要的损耗，8位能表示的就不必用32位表示。</p><h2 id="寄存器结构"><a href="#寄存器结构" class="headerlink" title="寄存器结构"></a>寄存器结构</h2><h1 id="二-常用汇编指令"><a href="#二-常用汇编指令" class="headerlink" title="二.常用汇编指令"></a>二.常用汇编指令</h1><h2 id="1-mov"><a href="#1-mov" class="headerlink" title="1.mov"></a>1.mov</h2><h2 id="2-add"><a href="#2-add" class="headerlink" title="2.add"></a>2.add</h2><h2 id="3-sub"><a href="#3-sub" class="headerlink" title="3.sub"></a>3.sub</h2><h3 id="4-and"><a href="#4-and" class="headerlink" title="4.and"></a>4.and</h3><h3 id="5-or"><a href="#5-or" class="headerlink" title="5.or"></a>5.or</h3><h3 id="6-xor"><a href="#6-xor" class="headerlink" title="6.xor"></a>6.xor</h3><h3 id="7-not"><a href="#7-not" class="headerlink" title="7.not"></a>7.not</h3><h1 id="三-内存"><a href="#三-内存" class="headerlink" title="三.内存"></a>三.内存</h1><p>简要介绍</p><h2 id="1-内存格式"><a href="#1-内存格式" class="headerlink" title="1.内存格式"></a>1.内存格式</h2><h2 id="2-读写内存"><a href="#2-读写内存" class="headerlink" title="2.读写内存"></a>2.读写内存</h2><h2 id="3-内存寻址"><a href="#3-内存寻址" class="headerlink" title="3.内存寻址"></a>3.内存寻址</h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;根据教程视频，以下均以32位计算机为例&quot;&gt;&lt;a href=&quot;#根据教程视频，以下均以32位计算机为例&quot; class=&quot;headerlink&quot; title=&quot;根据教程视频，以下均以32位计算机为例&quot;&gt;&lt;/a&gt;根据&lt;a href=&quot;https://www.bilibi</summary>
+      
+    
+    
+    
+    
+    <category term="总结" scheme="http://example.com/tags/%E6%80%BB%E7%BB%93/"/>
+    
+    <category term="汇编" scheme="http://example.com/tags/%E6%B1%87%E7%BC%96/"/>
+    
+    <category term="课报" scheme="http://example.com/tags/%E8%AF%BE%E6%8A%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初见二进制/汇编/1.1数据宽度_逻辑运算</title>
+    <link href="http://example.com/2025/11/08/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-1%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97/"/>
+    <id>http://example.com/2025/11/08/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-1%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97/</id>
+    <published>2025-11-08T15:30:32.000Z</published>
+    <updated>2025-11-08T19:01:26.161Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="根据教程视频，以下均以32位计算机为例"><a href="#根据教程视频，以下均以32位计算机为例" class="headerlink" title="根据教程视频，以下均以32位计算机为例"></a>根据<a href="https://www.bilibili.com/video/BV1w54y1y7Di?spm_id_from=333.788.videopod.episodes&vd_source=6c7f9b089a676f27a9991651bb982255&p=6">教程</a>视频，以下均以32位计算机为例</h2><h1 id="一-数据宽度"><a href="#一-数据宽度" class="headerlink" title="一.数据宽度"></a>一.数据宽度</h1><p>4位→可表示1位16进制0至F，以此类推。<br>8位→2位16,00至FF<br>16位→4位16,0000至FFFF<br>32位→8位16,00000000至FFFFFFFF</p><p>人为定义有&#x2F;无符号</p><p>0 1 2 3 4 5 6 7 8 9 A B C D E F<br>每个数怎么表示是可以定义来的，如<code>顺序定义为0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15</code>或<code>补码定义0 1 2 3 4 5 6 7 -8 -7 -6 -5 -4 -3 -2 -1</code>此处不做详解</p><p>”1开头为负数“的理解则代表后半部分能表示的数以一开头，而刚好此部分全被定义为负数。</p><h2 id="简单了解计量单位"><a href="#简单了解计量单位" class="headerlink" title="简单了解计量单位"></a>简单了解计量单位</h2><table><thead><tr><th>英文</th><th>中文</th><th>换算关系</th></tr></thead><tbody><tr><td>BIT</td><td>位</td><td>基础构成单元,一般以二进制呈现，为0或1</td></tr><tr><td>BYTE</td><td>字节</td><td>1字节&#x3D;8位</td></tr><tr><td>WORD</td><td>字</td><td>此情况下1字通常为16位，即为2字节</td></tr><tr><td>DWORD</td><td>双字</td><td>1字*2，通常为4字节</td></tr></tbody></table><h1 id="二-逻辑运算"><a href="#二-逻辑运算" class="headerlink" title="二.逻辑运算"></a>二.逻辑运算</h1><table><thead><tr><th>英文</th><th>中文</th><th>符号</th><th>用途</th></tr></thead><tbody><tr><td>OR</td><td>或</td><td>“</td><td>“</td></tr><tr><td>AND</td><td>与</td><td>&amp;</td><td>置0&#x2F;进位</td></tr><tr><td>XOR</td><td>异或</td><td>^</td><td>位加法，实质2的模运算，加密</td></tr><tr><td>NOT</td><td>非</td><td>!</td><td>翻转</td></tr></tbody></table><h2 id="以4位为例"><a href="#以4位为例" class="headerlink" title="以4位为例"></a>以4位为例</h2><h3 id="1-计算2-3"><a href="#1-计算2-3" class="headerlink" title="1.计算2+3"></a>1.计算2+3</h3><p>容器：<br>X：0010(2)<br>Y：0011(3)</p><p>对每位:<br>    0010<br> ^0011<br>    0001<br><code>R：0001</code></p><p>进位:<br>    0010<br> &amp;0011<br>    0010<br><code>同时0010&lt;&lt;1==0100(左移1位)</code><br>    此时0100！&#x3D;0000，所以继续运算</p><p>R→X:0001<br>Y:0100</p><p>对每位:<br>    0001<br>  ^0100<br>    0101<br><code>R：0101</code></p><p>进位:<br>    0001<br> &amp;0100<br>    0000<br><code>同时0000&lt;&lt;1==0000(左移1位),此操作后仍为0则计算完毕，此时R的0101即为结果</code></p><h5 id="所以2-3-5（0101）"><a href="#所以2-3-5（0101）" class="headerlink" title="所以2+3&#x3D;5（0101）"></a>所以2+3&#x3D;5（0101）</h5><h3 id="2-计算2-3"><a href="#2-计算2-3" class="headerlink" title="2.计算2-3"></a>2.计算2-3</h3><p>同理，X:0010<br>Y:0011→（进行补码运算，模16）1101</p><p>对每位:<br>    0010<br>  ^1101<br>    1111<br><code>R：1111</code></p><p>进位:<br>    0010<br> &amp;1101<br>    0000<br><code>同时0000&lt;&lt;1==0000(左移1位)，此操作后进位计算完毕</code></p><h5 id="所以2-3-1（1111为补码表示，对应原码-1）"><a href="#所以2-3-1（1111为补码表示，对应原码-1）" class="headerlink" title="所以2-3&#x3D;-1（1111为补码表示，对应原码-1）"></a>所以2-3&#x3D;-1（1111为补码表示，对应原码-1）</h5><h3 id="3-如何获取某value的第N位？"><a href="#3-如何获取某value的第N位？" class="headerlink" title="3.如何获取某value的第N位？"></a>3.如何获取某value的第N位？</h3><p>  利用&amp;操作置0：<br>    10001111<br>  &amp;00001000<br>    00001000</p><h3 id="4-利用xor加密"><a href="#4-利用xor加密" class="headerlink" title="4.利用xor加密"></a>4.利用xor加密</h3><pre><code>明：2015key：54</code></pre><p>加密过程：<br>   00100000(取20的8位明文为例)<br>^01010100(key)<br>  01110100(密文）</p><p>解密过程：<br>   01110100(key)<br>^01010100(密文)<br>  00100000(明文)</p><h2 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h2><p><code>mov</code></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将2赋值给eax寄存器</span></span><br><span class="line">mov eax,<span class="number">2</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;根据教程视频，以下均以32位计算机为例&quot;&gt;&lt;a href=&quot;#根据教程视频，以下均以32位计算机为例&quot; class=&quot;headerlink&quot; title=&quot;根据教程视频，以下均以32位计算机为例&quot;&gt;&lt;/a&gt;根据&lt;a href=&quot;https://www.bilibi</summary>
+      
+    
+    
+    
+    
+    <category term="总结" scheme="http://example.com/tags/%E6%80%BB%E7%BB%93/"/>
+    
+    <category term="汇编" scheme="http://example.com/tags/%E6%B1%87%E7%BC%96/"/>
+    
+    <category term="课报" scheme="http://example.com/tags/%E8%AF%BE%E6%8A%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ABOUT ME, LXIOS</title>
+    <link href="http://example.com/2025/10/19/ABOUT-ME-LXIOS/"/>
+    <id>http://example.com/2025/10/19/ABOUT-ME-LXIOS/</id>
+    <published>2025-10-19T08:54:07.000Z</published>
+    <updated>2025-11-08T15:51:36.060Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="这里是一只苦逼大学牲的博客，你可以称呼我灼心或者地瓜，当然，正经名字是Lxios，随你喜好就行"><a href="#这里是一只苦逼大学牲的博客，你可以称呼我灼心或者地瓜，当然，正经名字是Lxios，随你喜好就行" class="headerlink" title="这里是一只苦逼大学牲的博客，你可以称呼我灼心或者地瓜，当然，正经名字是Lxios，随你喜好就行"></a>这里是一只苦逼大学牲的博客，你可以称呼我灼心或者地瓜，当然，正经名字是Lxios，随你喜好就行</h3><h2 id="目前专注于ctf二进制，密码以及超级计算机相关知识的学习，会不定期更新一些学习周报，或者发布一些日常心得等等"><a href="#目前专注于ctf二进制，密码以及超级计算机相关知识的学习，会不定期更新一些学习周报，或者发布一些日常心得等等" class="headerlink" title="目前专注于ctf二进制，密码以及超级计算机相关知识的学习，会不定期更新一些学习周报，或者发布一些日常心得等等"></a>目前专注于ctf二进制，密码以及超级计算机相关知识的学习，会不定期更新一些学习周报，或者发布一些日常心得等等</h2><h1 id="blog仍在搭建ing"><a href="#blog仍在搭建ing" class="headerlink" title="blog仍在搭建ing"></a>blog仍在搭建ing</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;这里是一只苦逼大学牲的博客，你可以称呼我灼心或者地瓜，当然，正经名字是Lxios，随你喜好就行&quot;&gt;&lt;a href=&quot;#这里是一只苦逼大学牲的博客，你可以称呼我灼心或者地瓜，当然，正经名字是Lxios，随你喜好就行&quot; class=&quot;headerlink&quot; title</summary>
+      
+    
+    
+    
+    
+    <category term="hexo" scheme="http://example.com/tags/hexo/"/>
+    
+    <category term="萌新" scheme="http://example.com/tags/%E8%90%8C%E6%96%B0/"/>
+    
+    <category term="喵喵喵" scheme="http://example.com/tags/%E5%96%B5%E5%96%B5%E5%96%B5/"/>
+    
+  </entry>
+  
+</feed>
