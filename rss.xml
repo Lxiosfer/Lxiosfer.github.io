@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Hexo</title>
   
-  
+  <subtitle>欢迎来到LXIOS的BLOG！！</subtitle>
   <link href="http://example.com/rss.xml" rel="self"/>
   
   <link href="http://example.com/"/>
