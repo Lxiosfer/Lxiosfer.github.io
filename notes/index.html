@@ -1,0 +1,22 @@
+<%
+const posts = site.posts.toArray();
+const postsByYear = posts.reduce((acc, post) => {
+  const year = post.date.format('YYYY'); 
+  if (!acc[year]) acc[year] = [];       
+  acc[year].push(post);                 
+  return acc;
+}, {});
+%>
+<div class="post-list">
+  <% Object.keys(postsByYear).sort().reverse().forEach(year => { %>
+    <h2><%= year %></h2>
+    <ul>
+      <% postsByYear[year].forEach(post => { %>
+        <li>
+          <a href="<%= url_for(post.path) %>"><%= post.title %></a>
+          <time><%= post.date.format('MM-DD') %></time>
+        </li>
+      <% }); %>
+    </ul>
+  <% }); %>
+</div>
