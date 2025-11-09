@@ -1,54 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LXIOS - Notes</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/tailwind.css">
+  
+<header class="bg-black text-hacker-white py-4 font-dos font-extrabold">
+    <div class="container mx-auto flex items-center justify-between space-x-8">
+    
+      <h1 class="text-2xl font-bold ml-[100px] md:ml-0 animate-pulse text-hacker-color1 md:mr-[20%]">
+        <a href="/" class="hover:text-white transition-colors select-none">
+          LXIOS
+        </a>
+      </h1>
+  
+    <!-- 大屏幕 -->
+      <nav class="hidden md:block">
+        <ul class="flex space-x-6">
+          
+            <li>
+              <a href="/notes" class="select-none text-lg hover:text-hacker-color1 transition-all hover:underline decoration-wavy duration-300 text-hacker-color3">
+                Notes
+              </a>
+            </li>
+          
+            <li>
+              <a href="/" class="select-none text-lg hover:text-hacker-color1 transition-all hover:underline decoration-wavy duration-300 text-hacker-color3">
+                Home
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives" class="select-none text-lg hover:text-hacker-color1 transition-all hover:underline decoration-wavy duration-300 text-hacker-color3">
+                Archives
+              </a>
+            </li>
+          
+            <li>
+              <a href="/categories" class="select-none text-lg hover:text-hacker-color1 transition-all hover:underline decoration-wavy duration-300 text-hacker-color3">
+                Categories
+              </a>
+            </li>
+          
+            <li>
+              <a href="/tags" class="select-none text-lg hover:text-hacker-color1 transition-all hover:underline decoration-wavy duration-300 text-hacker-color3">
+                Tags
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about" class="select-none text-lg hover:text-hacker-color1 transition-all hover:underline decoration-wavy duration-300 text-hacker-color3">
+                About
+              </a>
+            </li>
+          
+            <li>
+              <a href="/rss.xml" class="select-none text-lg hover:text-hacker-color1 transition-all hover:underline decoration-wavy duration-300 text-hacker-color3">
+                RSS
+              </a>
+            </li>
+          
+        </ul>
+      </nav>
+  
+      <!-- 小屏幕 -->
+      <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  
+    <!-- 折叠菜单 -->
+    <nav id="mobile-menu" class="hidden bg-black">
+      <ul class="space-y-2 py-4 px-6">
+        
+          <li>
+            <a href="/notes" class="block text-white hover:text-hacker-color1 transition-colors">
+              Notes
+            </a>
+          </li>
+        
+          <li>
+            <a href="/" class="block text-white hover:text-hacker-color1 transition-colors">
+              Home
+            </a>
+          </li>
+        
+          <li>
+            <a href="/archives" class="block text-white hover:text-hacker-color1 transition-colors">
+              Archives
+            </a>
+          </li>
+        
+          <li>
+            <a href="/categories" class="block text-white hover:text-hacker-color1 transition-colors">
+              Categories
+            </a>
+          </li>
+        
+          <li>
+            <a href="/tags" class="block text-white hover:text-hacker-color1 transition-colors">
+              Tags
+            </a>
+          </li>
+        
+          <li>
+            <a href="/about" class="block text-white hover:text-hacker-color1 transition-colors">
+              About
+            </a>
+          </li>
+        
+          <li>
+            <a href="/rss.xml" class="block text-white hover:text-hacker-color1 transition-colors">
+              RSS
+            </a>
+          </li>
+        
+      </ul>
+    </nav>
+  
+    <!-- RSS Link -->
+    <link rel="alternate" type="application/rss+xml" title=" RSS" href="/rss.xml" />
+  </header>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/js/search.js"></script>
+  <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-<div class="post-list">
+    menuToggle.addEventListener("click", () => {
+        if (mobileMenu.classList.contains("hidden")) {
+        mobileMenu.classList.remove("hidden");
+        } else {
+        mobileMenu.classList.add("hidden");
+        }
+    });
+    });
+
+  </script>
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="bg-black container mx-auto">
+  <h1 class="text-4xl text-hacker-color1 font-bold font-dos">Notes</h1>
+  <hr class="w-full border-t-2 border-line-color border-dashed">
+  <div class="container mx-auto flex bg-black min-h-screen">
+    <div class="w-full">
+      
+
+      <div class="archive-list text-lg mt-8">
+        
+          <section class="mb-6">
+            <h2 class="text-2xl font-bold text-hacker-color1 mb-4">2025</h2>
+            <ul class="ml-4">
+              
+                <li class="mb-2">
+                  <span class="text-hacker-color3">2025-10-19 >> </span>
+                  <a class="text-hacker-color1 hover:underline" href="/2025/10/19/ABOUT-ME-LXIOS/">ABOUT ME, LXIOS</a>
+                </li>
+              
+                <li class="mb-2">
+                  <span class="text-hacker-color3">2025-11-08 >> </span>
+                  <a class="text-hacker-color1 hover:underline" href="/2025/11/08/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-1%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97/">初见二进制/汇编/1.1数据宽度_逻辑运算</a>
+                </li>
+              
+                <li class="mb-2">
+                  <span class="text-hacker-color3">2025-11-09 >> </span>
+                  <a class="text-hacker-color1 hover:underline" href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-2%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8-%E8%AE%A4%E8%AF%86%E6%8C%87%E4%BB%A4-%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/">初见二进制/汇编/1.2通用寄存器_认识指令_内存读写</a>
+                </li>
+              
+                <li class="mb-2">
+                  <span class="text-hacker-color3">2025-11-09 >> </span>
+                  <a class="text-hacker-color1 hover:underline" href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-4%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8-JCC/">初见二进制/汇编/1.4标志寄存器_JCC</a>
+                </li>
+              
+                <li class="mb-2">
+                  <span class="text-hacker-color3">2025-11-09 >> </span>
+                  <a class="text-hacker-color1 hover:underline" href="/2025/11/09/%E5%AF%86%E7%A0%81%E5%89%8D%E7%BD%AE%E6%95%B0%E5%AD%A6-1-0%E6%A8%A1%E8%BF%90%E7%AE%97/">密码前置数学/1.0模运算</a>
+                </li>
+              
+                <li class="mb-2">
+                  <span class="text-hacker-color3">2025-11-09 >> </span>
+                  <a class="text-hacker-color1 hover:underline" href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-5%E5%A0%86%E6%A0%88%E6%8F%90%E5%8D%87-%E5%A0%86%E6%A0%88%E5%9B%BE/">初见二进制/汇编/1.5堆栈提升_堆栈图</a>
+                </li>
+              
+                <li class="mb-2">
+                  <span class="text-hacker-color3">2025-11-09 >> </span>
+                  <a class="text-hacker-color1 hover:underline" href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-3%E6%A0%88%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86-%E5%A0%86%E6%A0%88/">初见二进制/汇编/1.3栈的初步认识_堆栈</a>
+                </li>
+              
+                <li class="mb-2">
+                  <span class="text-hacker-color3">2025-11-09 >> </span>
+                  <a class="text-hacker-color1 hover:underline" href="/2025/11/09/%E5%AF%86%E7%A0%81%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95-1-1%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95-%E8%B4%9D%E7%A5%96%E5%AE%9A%E7%90%86-%E6%8B%93%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95/">密码相关算法/1.1欧几里得算法_贝祖定理_拓展欧几里得算法</a>
+                </li>
+              
+                <li class="mb-2">
+                  <span class="text-hacker-color3">2025-11-09 >> </span>
+                  <a class="text-hacker-color1 hover:underline" href="/2025/11/09/%E5%AF%86%E7%A0%81%E5%9F%BA%E7%A1%80-1-0%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/">密码基础/1.0古典密码</a>
+                </li>
+              
+            </ul>
+          </section>
+        
+      </div>
+    </div>
+    
+    <div class="w-1/3 hidden md:block space-y-4 mt-8">
+      
+        
+          <!-- 搜索框 -->
+          <input type="text" id="search-input" placeholder="Search..." class="w-full p-2.5 text-lg mb-5 border-2 border-line-color rounded bg-black text-white placeholder-gray-400"/>
+          <div id="search-results"></div>
+        
   
-    <h2>2025</h2>
-    <ul>
-      
-        <li>
-          <a href="/2025/10/19/ABOUT-ME-LXIOS/">ABOUT ME, LXIOS</a>
-          <time>10-19</time>
-        </li>
-      
-        <li>
-          <a href="/2025/11/08/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-1%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97/">初见二进制/汇编/1.1数据宽度_逻辑运算</a>
-          <time>11-08</time>
-        </li>
-      
-        <li>
-          <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-2%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8-%E8%AE%A4%E8%AF%86%E6%8C%87%E4%BB%A4-%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/">初见二进制/汇编/1.2通用寄存器_认识指令_内存读写</a>
-          <time>11-09</time>
-        </li>
-      
-        <li>
-          <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-4%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8-JCC/">初见二进制/汇编/1.4标志寄存器_JCC</a>
-          <time>11-09</time>
-        </li>
-      
-        <li>
-          <a href="/2025/11/09/%E5%AF%86%E7%A0%81%E5%89%8D%E7%BD%AE%E6%95%B0%E5%AD%A6-1-0%E6%A8%A1%E8%BF%90%E7%AE%97/">密码前置数学/1.0模运算</a>
-          <time>11-09</time>
-        </li>
-      
-        <li>
-          <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-5%E5%A0%86%E6%A0%88%E6%8F%90%E5%8D%87-%E5%A0%86%E6%A0%88%E5%9B%BE/">初见二进制/汇编/1.5堆栈提升_堆栈图</a>
-          <time>11-09</time>
-        </li>
-      
-        <li>
-          <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-3%E6%A0%88%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86-%E5%A0%86%E6%A0%88/">初见二进制/汇编/1.3栈的初步认识_堆栈</a>
-          <time>11-09</time>
-        </li>
-      
-        <li>
-          <a href="/2025/11/09/%E5%AF%86%E7%A0%81%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95-1-1%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95-%E8%B4%9D%E7%A5%96%E5%AE%9A%E7%90%86-%E6%8B%93%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95/">密码相关算法/1.1欧几里得算法_贝祖定理_拓展欧几里得算法</a>
-          <time>11-09</time>
-        </li>
-      
-        <li>
-          <a href="/2025/11/09/%E5%AF%86%E7%A0%81%E5%9F%BA%E7%A1%80-1-0%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/">密码基础/1.0古典密码</a>
-          <time>11-09</time>
-        </li>
-      
-    </ul>
+        
   
-</div>
+        
+  
+        
+  
+        
+  
+      
+        
+  
+        
+          <!-- 公告栏 -->
+          <div class=" text-white p-4 rounded-md border-2 border-dashed border-line-color mb-4">
+            <h3 class="font-bold text-lg text-hacker-color1">Notice</h3>
+            <p class="mt-4"> 🎉 欢迎来到Lxios的博客！</br> 请查看最新文章~</p>
+          </div>
+        
+  
+        
+  
+        
+  
+        
+  
+      
+        
+  
+        
+  
+        
+          <!-- 分类部分 -->
+          <h3 class="text-hacker-color1 font-bold text-lg">Categories</h3>
+          <div>
+            
+            
+          </div>
+          <hr class="w-full border-t-2 border-line-color border-dashed">
+        
+  
+        
+  
+        
+  
+      
+        
+  
+        
+  
+        
+  
+        
+          <!-- 标签部分 -->
+          <h3 class="text-hacker-color1 font-bold text-lg">Tags</h3>
+          <div class="flex flex-wrap justify-start items-center">
+            
+              <a href="http://example.com/tags/hexo/" class="text-hacker-color3 hover:bg-hacker-hover-color hover:text-white block border border-hacker-color3 hover:border-dotted rounded-sm py-0.5 px-2 mr-4 mb-2">
+                hexo <sub>1</sub>
+              </a>
+              <br />
+            
+              <a href="http://example.com/tags/萌新/" class="text-hacker-color3 hover:bg-hacker-hover-color hover:text-white block border border-hacker-color3 hover:border-dotted rounded-sm py-0.5 px-2 mr-4 mb-2">
+                萌新 <sub>1</sub>
+              </a>
+              <br />
+            
+              <a href="http://example.com/tags/喵喵喵/" class="text-hacker-color3 hover:bg-hacker-hover-color hover:text-white block border border-hacker-color3 hover:border-dotted rounded-sm py-0.5 px-2 mr-4 mb-2">
+                喵喵喵 <sub>1</sub>
+              </a>
+              <br />
+            
+              <a href="http://example.com/tags/总结/" class="text-hacker-color3 hover:bg-hacker-hover-color hover:text-white block border border-hacker-color3 hover:border-dotted rounded-sm py-0.5 px-2 mr-4 mb-2">
+                总结 <sub>4</sub>
+              </a>
+              <br />
+            
+              <a href="http://example.com/tags/汇编/" class="text-hacker-color3 hover:bg-hacker-hover-color hover:text-white block border border-hacker-color3 hover:border-dotted rounded-sm py-0.5 px-2 mr-4 mb-2">
+                汇编 <sub>4</sub>
+              </a>
+              <br />
+            
+              <a href="http://example.com/tags/课报/" class="text-hacker-color3 hover:bg-hacker-hover-color hover:text-white block border border-hacker-color3 hover:border-dotted rounded-sm py-0.5 px-2 mr-4 mb-2">
+                课报 <sub>4</sub>
+              </a>
+              <br />
+            
+            
+          </div>
+          <hr class="w-full border-t-2 border-line-color border-dashed">
+        
+  
+        
+  
+      
+        
+  
+        
+  
+        
+  
+        
+  
+        
+          <!-- 链接部分 -->
+          <h3 class="text-hacker-color1 font-bold text-lg">Links</h3>
+          <div>
+            
+              <a href="https://space.bilibili.com/393210633" target="_blank" class="text-hacker-color3 hover:text-white">
+                b站主页
+              </a>
+              <br />
+            
+              <a href="https://github.com/Lxiosfer" target="_blank" class="text-hacker-color3 hover:text-white">
+                github主页
+              </a>
+              <br />
+            
+              <a href="mailto:807979729@qq.com" target="_blank" class="text-hacker-color3 hover:text-white">
+                电子邮箱
+              </a>
+              <br />
+            
+              <a href="https://www.m310ct.com/notes" target="_blank" class="text-hacker-color3 hover:text-white">
+                Hacker Notes
+              </a>
+              <br />
+            
+          </div>
+          <hr class="w-full border-t-2 border-line-color border-dashed">
+        
+  
+      
+    </div>
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  </div>
+  <footer class="bg-black text-gray-400 py-4">
+ <div class="container mx-auto text-center">
+  <p>© <span id="current-year"></span>  John Doe 
+    <br> Powered by <a class="hover:text-white duration-150 hover:underline decoration-slice" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a class="hover:text-white duration-150 hover:underline decoration-slice" target="_blank" rel="noopener" href="https://github.com/m310ct/hexo-theme-hexploit">Hexpolit</a></p>
+ </div>
+</footer>
+
+<script> 
+ document.getElementById("current-year").textContent = new Date().getFullYear();
+</script>
+<script>
+window.MathJax = {
+tex: {
+  inlineMath: [['$', '$'], ['\\(', '\\)']]  // 启用 $...$ 和 \( ... \)
+},
+svg: {
+  fontCache: 'global'
+}
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+
+</body>
+</html>
