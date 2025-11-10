@@ -252,9 +252,17 @@
 <p>为何分出不同位？<br>减小不必要的损耗，8位能表示的就不必用32位表示。</p>
 <h2 id="寄存器结构"><a href="#寄存器结构" class="headerlink" title="寄存器结构"></a>寄存器结构</h2><h1 id="二-常用汇编指令"><a href="#二-常用汇编指令" class="headerlink" title="二.常用汇编指令"></a>二.常用汇编指令</h1><p><code>r代表寄存器，m代表相应内存空间,imm代表相应位的立即数（一般16进制）</code></p>
 <p><code>说几位就几位，不够会补0，溢出会覆盖等等</code></p>
-<h2 id="1-mov"><a href="#1-mov" class="headerlink" title="1.mov"></a>1.mov</h2><p>实质：操作码，操作数<br>###用法：<br>    mov 目标操作数，源操作数</p>
-<p>###语法：<br>    目标操作数可为：</p>
-<pre><code>    1.r/m8(16,32),r8(16,32)	  
+<p><code>数溢出时，只从最低位开始存，多余被去除</code></p>
+<h2 id="1-mov"><a href="#1-mov" class="headerlink" title="1.mov"></a>1.mov</h2><h4 id="实质：操作码-操作数"><a href="#实质：操作码-操作数" class="headerlink" title="实质：操作码+操作数"></a>实质：操作码+操作数</h4><pre><code>目标操作数：立即数，通用寄存器，段寄存器等等
+源操作数：同上
+
+在不搞小动作的情况下，操作数的宽度一般要一样，源操作数和目标操作数不为同一单元
+</code></pre>
+<h3 id="用法："><a href="#用法：" class="headerlink" title="用法："></a>用法：</h3><pre><code>mov 目标操作数，源操作数
+</code></pre>
+<h3 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h3><pre><code>目标操作数可为：
+    
+    1.r/m8(16,32),r8(16,32)	  
     2.r8(16,32),r/m8(16,32)
     3.r8(16,32),imm8(16,32)
 </code></pre>
