@@ -33,7 +33,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LXIOS - 初见二进制/汇编/1.2通用寄存器_认识指令_内存读写</title>
+    <title>LXIOS - C语言基础/1.0指针</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/tailwind.css">
     <link rel="stylesheet" href="/css/highlight.css">
@@ -180,86 +180,17 @@
 <meta name="generator" content="Hexo 7.3.0"></head>
 <body class="bg-black text-hacker-color3 container mx-auto" style="overflow-x:hidden">
     <!-- 文章标题 -->
-    <h1 class="text-5xl text-hacker-color1 font-bold font-dos my-6 text-center">初见二进制/汇编/1.2通用寄存器_认识指令_内存读写</h1>
+    <h1 class="text-5xl text-hacker-color1 font-bold font-dos my-6 text-center">C语言基础/1.0指针</h1>
 
     <!-- 发布时间 -->
     <p class="text-hacker-color3 text-center text-sm mb-4">
-        2025-11-09
+        2025-11-10
     </p>
 
     <!-- 文章内容 -->
     <div id="article-content" class="article-entry prose prose-invert mx-auto max-w-4xl leading-relaxed highlight" style="display: flex;">
         <div id="middle-box">
-            <h2 id="根据教程视频，以下均以32位计算机为例"><a href="#根据教程视频，以下均以32位计算机为例" class="headerlink" title="根据教程视频，以下均以32位计算机为例"></a>根据<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1w54y1y7Di?spm_id_from=333.788.videopod.episodes&vd_source=6c7f9b089a676f27a9991651bb982255&p=6">教程</a>视频，以下均以32位计算机为例</h2><h1 id="一-通用寄存器（32位计算机）"><a href="#一-通用寄存器（32位计算机）" class="headerlink" title="一.通用寄存器（32位计算机）"></a>一.通用寄存器（32位计算机）</h1><table>
-<thead>
-<tr>
-<th>32位</th>
-<th>16位</th>
-<th>8位低↓高</th>
-<th>编号</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>EAX</td>
-<td>AX</td>
-<td>AL</td>
-<td>0</td>
-</tr>
-<tr>
-<td>ECX</td>
-<td>CX</td>
-<td>CL</td>
-<td>1</td>
-</tr>
-<tr>
-<td>EDX</td>
-<td>DX</td>
-<td>DL</td>
-<td>2</td>
-</tr>
-<tr>
-<td>EBX</td>
-<td>BX</td>
-<td>BL</td>
-<td>3</td>
-</tr>
-<tr>
-<td>ESP</td>
-<td>SP</td>
-<td>AH</td>
-<td>4</td>
-</tr>
-<tr>
-<td>EBP</td>
-<td>BP</td>
-<td>CH</td>
-<td>5</td>
-</tr>
-<tr>
-<td>ESI</td>
-<td>SI</td>
-<td>DH</td>
-<td>6</td>
-</tr>
-<tr>
-<td>EDI</td>
-<td>DI</td>
-<td>BH</td>
-<td>7</td>
-</tr>
-</tbody></table>
-<h3 id="ps：eip显示的是当前程序运行处"><a href="#ps：eip显示的是当前程序运行处" class="headerlink" title="ps：eip显示的是当前程序运行处"></a>ps：eip显示的是当前程序运行处</h3><p><code>其它寄存器主要用途在此先不做介绍</code></p>
-<p>为何分出不同位？<br>减小不必要的损耗，8位能表示的就不必用32位表示。</p>
-<h2 id="寄存器结构"><a href="#寄存器结构" class="headerlink" title="寄存器结构"></a>寄存器结构</h2><h1 id="二-常用汇编指令"><a href="#二-常用汇编指令" class="headerlink" title="二.常用汇编指令"></a>二.常用汇编指令</h1><p><code>r代表寄存器，m代表相应内存空间,imm代表相应位的立即数（一般16进制）</code></p>
-<p><code>说几位就几位，不够会补0，溢出会覆盖等等</code></p>
-<h2 id="1-mov"><a href="#1-mov" class="headerlink" title="1.mov"></a>1.mov</h2><p>实质：操作码，操作数<br>###用法：<br>    mov 目标操作数，源操作数</p>
-<p>###语法：<br>    目标操作数可为：</p>
-<pre><code>    1.r/m8(16,32),r8(16,32)	  
-    2.r8(16,32),r/m8(16,32)
-    3.r8(16,32),imm8(16,32)
-</code></pre>
-<h2 id="2-add"><a href="#2-add" class="headerlink" title="2.add"></a>2.add</h2><h2 id="3-sub"><a href="#3-sub" class="headerlink" title="3.sub"></a>3.sub</h2><h3 id="4-and"><a href="#4-and" class="headerlink" title="4.and"></a>4.and</h3><h3 id="5-or"><a href="#5-or" class="headerlink" title="5.or"></a>5.or</h3><h3 id="6-xor"><a href="#6-xor" class="headerlink" title="6.xor"></a>6.xor</h3><h3 id="7-not"><a href="#7-not" class="headerlink" title="7.not"></a>7.not</h3><h1 id="三-内存"><a href="#三-内存" class="headerlink" title="三.内存"></a>三.内存</h1><p>简要介绍</p>
-<h2 id="1-内存格式"><a href="#1-内存格式" class="headerlink" title="1.内存格式"></a>1.内存格式</h2><h2 id="2-读写内存"><a href="#2-读写内存" class="headerlink" title="2.读写内存"></a>2.读写内存</h2><h2 id="3-内存寻址"><a href="#3-内存寻址" class="headerlink" title="3.内存寻址"></a>3.内存寻址</h2>
+            
         </div>
         
             <div class="post-container">
