@@ -250,7 +250,65 @@
 </tbody></table>
 <h3 id="ps：eip显示的是当前程序运行处"><a href="#ps：eip显示的是当前程序运行处" class="headerlink" title="ps：eip显示的是当前程序运行处"></a>ps：eip显示的是当前程序运行处</h3><p><code>其它寄存器主要用途在此先不做介绍</code></p>
 <p>为何分出不同位？<br>减小不必要的损耗，8位能表示的就不必用32位表示。</p>
-<h2 id="寄存器结构"><a href="#寄存器结构" class="headerlink" title="寄存器结构"></a>寄存器结构</h2><h1 id="二-常用汇编指令"><a href="#二-常用汇编指令" class="headerlink" title="二.常用汇编指令"></a>二.常用汇编指令</h1><p><code>r代表寄存器，m代表相应内存空间,imm代表相应位的立即数（一般16进制）</code></p>
+<h2 id="寄存器结构"><a href="#寄存器结构" class="headerlink" title="寄存器结构"></a>寄存器结构</h2><table>
+<thead>
+<tr>
+<th>31</th>
+<th>15</th>
+<th>7</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EAX</td>
+<td>AX</td>
+<td>AH</td>
+<td>AL</td>
+</tr>
+<tr>
+<td>ECX</td>
+<td>CX</td>
+<td>CH</td>
+<td>CL</td>
+</tr>
+<tr>
+<td>EDX</td>
+<td>DX</td>
+<td>DH</td>
+<td>DL</td>
+</tr>
+<tr>
+<td>EBX</td>
+<td>BX</td>
+<td>BH</td>
+<td>BL</td>
+</tr>
+<tr>
+<td>ESP</td>
+<td>SP</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>EBP</td>
+<td>BP</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ESI</td>
+<td>SI</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>EDI</td>
+<td>DI</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="二-常用汇编指令"><a href="#二-常用汇编指令" class="headerlink" title="二.常用汇编指令"></a>二.常用汇编指令</h1><p><code>r代表寄存器，m代表相应内存空间,imm代表相应位的立即数（一般16进制）</code></p>
 <p><code>说几位就几位，不够会补0，溢出会覆盖等等</code></p>
 <p><code>数溢出时，只从最低位开始存，多余被去除</code></p>
 <h2 id="1-mov"><a href="#1-mov" class="headerlink" title="1.mov"></a>1.mov</h2><h4 id="实质：操作码-操作数"><a href="#实质：操作码-操作数" class="headerlink" title="实质：操作码+操作数"></a>实质：操作码+操作数</h4><pre><code>目标操作数：立即数，通用寄存器，段寄存器等等
