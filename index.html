@@ -272,7 +272,11 @@ Cin.get()是等我们按下enter键在前往下一条命令前等待，这时程
                 2025-11-09
               </p>
               <p class="post-excerpt text-hacker-color3 group-hover:text-white">
-                根据教程视频，以下均以32位计算机为例...
+                根据教程视频，以下均以32位计算机为例Push的时候是立即数就永远-4Push 寄存器时，al（八位），不行Push ax（16位） 可以，会-2Push32位寄存器&amp;#x2F;容器，会-4也可以push一块内存（dword），把这内存的值push到目标位置（同样-4）Push word，则-2Push的是跟容器的宽度一样的，同样内存也不能push八位
+Pop同理无8位，按照宽度pop，ax就+2…..
+堆栈平衡Pushad指令把8个通用寄存器的值存到内存（堆栈）去了Popad指令把刚刚pushad的值又放回去了（你用pushad折腾完了想恢复原来的模样就popad一下）
+所需知识PE结构
+下...
               </p>
             </a>
           </div>
@@ -286,8 +290,7 @@ Cin.get()是等我们按下enter键在前往下一条命令前等待，这时程
                 2025-11-09
               </p>
               <p class="post-excerpt text-hacker-color3 group-hover:text-white">
-                ###结合wiki来简单认识栈
-...
+                结合wiki来简单认识栈...
               </p>
             </a>
           </div>
