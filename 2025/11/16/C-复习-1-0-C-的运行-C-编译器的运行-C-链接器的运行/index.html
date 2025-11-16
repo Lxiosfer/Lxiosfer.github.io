@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    p{
+        margin-top: 0 !important;
+        margin-bottom: 1rem !important;
+        font-size: 1.1rem;
+    }
+    figure{
+        margin: 0 !important;
+    }
+    pre{
+        padding: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 1rem !important;
+    }
+
+    td{
+        padding: 0 !important;
+        margin-bottom: 1rem !important;
+    }
+    h1,h2,h3,h4,h5,h6{
+        margin-top: 0 !important;
+        margin-bottom: 1rem !important;
+    }
+    @media (min-width: 1024px) {
+        #middle-box{
+            min-width: 56rem;
+        }
+    
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LXIOS - C++复习/1.0/C++的运行_C++编译器的运行_C++链接器的运行</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/toc.css">
+    
+<header class="bg-black text-hacker-white py-4 font-dos font-extrabold">
+    <div class="container mx-auto flex items-center justify-between space-x-8">
+    
+      <h1 class="text-2xl font-bold ml-[100px] md:ml-0 animate-pulse text-hacker-color1 md:mr-[20%]">
+        <a href="/" class="hover:text-white transition-colors select-none">
+          LXIOS
+        </a>
+      </h1>
+  
+    <!-- 大屏幕 -->
+      <nav class="hidden md:block">
+        <ul class="flex space-x-6">
+          
+            <li>
+              <a href="/notes" class="select-none text-lg hover:text-hacker-color1 transition-all hover:underline decoration-wavy duration-300 text-hacker-color3">
+                Notes
+              </a>
+            </li>
+          
+            <li>
+              <a href="/" class="select-none text-lg hover:text-hacker-color1 transition-all hover:underline decoration-wavy duration-300 text-hacker-color3">
+                Home
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives" class="select-none text-lg hover:text-hacker-color1 transition-all hover:underline decoration-wavy duration-300 text-hacker-color3">
+                Archives
+              </a>
+            </li>
+          
+            <li>
+              <a href="/categories" class="select-none text-lg hover:text-hacker-color1 transition-all hover:underline decoration-wavy duration-300 text-hacker-color3">
+                Categories
+              </a>
+            </li>
+          
+            <li>
+              <a href="/tags" class="select-none text-lg hover:text-hacker-color1 transition-all hover:underline decoration-wavy duration-300 text-hacker-color3">
+                Tags
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about" class="select-none text-lg hover:text-hacker-color1 transition-all hover:underline decoration-wavy duration-300 text-hacker-color3">
+                About
+              </a>
+            </li>
+          
+            <li>
+              <a href="/rss.xml" class="select-none text-lg hover:text-hacker-color1 transition-all hover:underline decoration-wavy duration-300 text-hacker-color3">
+                RSS
+              </a>
+            </li>
+          
+        </ul>
+      </nav>
+  
+      <!-- 小屏幕 -->
+      <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  
+    <!-- 折叠菜单 -->
+    <nav id="mobile-menu" class="hidden bg-black">
+      <ul class="space-y-2 py-4 px-6">
+        
+          <li>
+            <a href="/notes" class="block text-white hover:text-hacker-color1 transition-colors">
+              Notes
+            </a>
+          </li>
+        
+          <li>
+            <a href="/" class="block text-white hover:text-hacker-color1 transition-colors">
+              Home
+            </a>
+          </li>
+        
+          <li>
+            <a href="/archives" class="block text-white hover:text-hacker-color1 transition-colors">
+              Archives
+            </a>
+          </li>
+        
+          <li>
+            <a href="/categories" class="block text-white hover:text-hacker-color1 transition-colors">
+              Categories
+            </a>
+          </li>
+        
+          <li>
+            <a href="/tags" class="block text-white hover:text-hacker-color1 transition-colors">
+              Tags
+            </a>
+          </li>
+        
+          <li>
+            <a href="/about" class="block text-white hover:text-hacker-color1 transition-colors">
+              About
+            </a>
+          </li>
+        
+          <li>
+            <a href="/rss.xml" class="block text-white hover:text-hacker-color1 transition-colors">
+              RSS
+            </a>
+          </li>
+        
+      </ul>
+    </nav>
+  
+    <!-- RSS Link -->
+    <link rel="alternate" type="application/rss+xml" title=" RSS" href="/rss.xml" />
+  </header>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/js/search.js"></script>
+  <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuToggle.addEventListener("click", () => {
+        if (mobileMenu.classList.contains("hidden")) {
+        mobileMenu.classList.remove("hidden");
+        } else {
+        mobileMenu.classList.add("hidden");
+        }
+    });
+    });
+
+  </script>
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="bg-black text-hacker-color3 container mx-auto" style="overflow-x:hidden">
+    <!-- 文章标题 -->
+    <h1 class="text-5xl text-hacker-color1 font-bold font-dos my-6 text-center">C++复习/1.0/C++的运行_C++编译器的运行_C++链接器的运行</h1>
+
+    <!-- 发布时间 -->
+    <p class="text-hacker-color3 text-center text-sm mb-4">
+        2025-11-16
+    </p>
+
+    <!-- 文章内容 -->
+    <div id="article-content" class="article-entry prose prose-invert mx-auto max-w-4xl leading-relaxed highlight" style="display: flex;">
+        <div id="middle-box">
+            <h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><h2 id="重构-复习"><a href="#重构-复习" class="headerlink" title="重构&#x2F;复习"></a>重构&#x2F;复习</h2><h3 id="Part1-c-是如何工作的"><a href="#Part1-c-是如何工作的" class="headerlink" title="Part1  c++是如何工作的"></a>Part1  c++是如何工作的</h3><p>Include 找到一个文件拷贝到现在这个文件里（在编译前）</p>
+<p>Main这个函数比较特殊，没有返回值时，默认返回0，仅限此函数</p>
+<p>&lt;&lt;重载运算符，也是类似一个函数，也有参数<br>例如std::cout&lt;&lt;”666”&lt;&lt;std::endl里面的666就是参数<br>或者另一层含义是把字符串666推（push）到cout流中，再打印到终端，再推送一个行结束符</p>
+<p>Cin.get()是等我们按下enter键在前往下一条命令前等待，这时程序暂停执行，直到按下回车就继续执行</p>
+<h4 id="怎么把它转换成一个二进制文件？"><a href="#怎么把它转换成一个二进制文件？" class="headerlink" title="怎么把它转换成一个二进制文件？"></a>怎么把它转换成一个二进制文件？</h4><p>【1】预处理。（其实也算是编译的一部分）编译器先处理include（预处理语句），把需要的文件copy进来，你就可以使用这些文件包含的内容了</p>
+<p>【2】编译。预处理完就开始编译了，转化为实际机械代码<br>    1.此时你可以根据你的编译器选择多种编译模式或规则（rules），例如debug模式（会更慢，因为很多优化被关掉了，但好处是可以调试代码），release模式（），编译目标平台x86（代表编译成windows32位），x64，安卓的目标平台等等<br>    2.头文件不会被编译，cpp被编译，因为预处理时头文件内容已经含进来了，cpp被编译的时候放进来的文件一起被编译了<br>    3.每个cpp都被编译成一个目标文件（object file）.obj，对于每一个c++文件，都会生成一个obj。</p>
+<p>【3】链接。把cpp和obj合成一个可执行文件，则需要link，也就是链接（将所有的obj粘文件合在一起成为一个exe文件）<br>    1.单独编译文件时，并未link。Build时，linker会找到正确的各个文件，将其下的内容如函数定义等导入到log函数里，找不到定义就会出现link error（看起来挺吓人的…）</p>
+<h4 id="为了保证代码干净整洁，可以把函数装载到其他文件"><a href="#为了保证代码干净整洁，可以把函数装载到其他文件" class="headerlink" title="为了保证代码干净整洁，可以把函数装载到其他文件"></a>为了保证代码干净整洁，可以把函数装载到其他文件</h4><pre><code>因为c++中任何符号都需要声明，函数也一样，所以各子文件尽量也要包含头文件，main文件中也要声明函数
+</code></pre>
+<p><code>（声明的意思是这个东西是存在的，不一定要有具体内容。如void log（。。。）；这也是函数签名，这样告诉它有这个函数/东西。至于待会要用的时候再找（link等等）。定义的意思是这个东西到底是什么，是怎么样的。就像void log（。。。）&#123;。。。。&#125;）</code></p>
+<h3 id="Part2-c-编译器是如何工作的"><a href="#Part2-c-编译器是如何工作的" class="headerlink" title="Part2 c++编译器是如何工作的"></a>Part2 c++编译器是如何工作的</h3><p>获取源文件并输出一个obj文件（包含机器代码以及其他我们定义的常数数据）<br>C++与java不同，命名不被严格规定，文件只是提供给编译器源代码的一种方式，而其后缀就是告诉编译器该怎么处理这个文件</p>
+<p>翻译单元<br>一个cpp文件不一定要等于一个翻译单元，当制作大型项目时，很多cpp文件合在一起也可以称作一个翻译单元</p>
+<p>编译的第一阶段<br>预处理</p>
+<p>编译器遍历预处理语句并对其进行处理，如include，define，if，pragma。。。</p>
+<p>#include，编译器打开那个文件，阅读他的所有内容，再粘贴到你写的文件里include相应的位置。所以，它不一定要放在头部，也可穿插在代码行中，仅仅是粘贴内容后再编译没问题就行了。</p>
+<p>#define则是搜索后面的那个东西，将它出现的地方替换为末尾那个内容<br>例如#define INTER int，对的然后之后的INTER都会被替换为”int“字符，再编译</p>
+<p>#if 1，意思是if为真，0就为假，相当于被禁用，再在结尾加个#endif就可以使用。</p>
+<p>Obj内部是二进制形式，你也可以转换成汇编代码去看。</p>
+<p>汇编里函数跟着的一大串随机字符是它的签名，用于唯一定位。</p>
+<p>当然优化时也会自动删除无用的函数，追求speed。</p>
+<h3 id="Part3-c-链接器是如何工作的"><a href="#Part3-c-链接器是如何工作的" class="headerlink" title="Part3 c++链接器是如何工作的"></a>Part3 c++链接器是如何工作的</h3><p>从源文件转化为可执行文件，第一阶段是编译源文件，第二阶段就是链接，其主要焦点是找到每个符号和函数在哪里，再把它们连接起来。它也将拉进我们可能用到的其他库，像是c运行时库，c++标准库，平台api等等。<br>有静态链接和动态链接，不过留到其他篇目再讲。</p>
+<p>但记住，每个文件被编译成一个单独的目标文件，一个翻译单元，他们之间没有关系，不能交互。即使没有其他文件，库通常会在main函数设置入口，（你也可以自定义入口点）进行链接，换句话说应用就是从这里开始run的。</p>
+<p>Vs里<br>C开头的错误代码表示错误出现在编译阶段<br>Lnk开头的错误代码则表示错误出现在link阶段</p>
+<p>Link阶段，主文件调用了函数，即使它没有被实际使用，也会检错<br>但当你在其调用前写下static这个词（静态），意味着这个东西只被声明在这个翻译单元中，它对其他的obj文件都不可见。若它在此文件没有被实际调用，将不会得到任何link错误，但他被调用时自然会检错</p>
+<p>出现多个一样的函数时，link也会告诉你它不知道要链哪个，所以注意使用</p>
+<p>类似static，在前面加一个Inline（内联）的意思是：建议编译器在调用函数的时候直接展开函数体→获取实际函数体并将函数调用替换为函数体，其实是重复调用函数转为重复调用代码，算是节省栈内存的重复消耗</p>
+
+        </div>
+        
+            <div class="post-container">
+            <aside class="toc-container">
+                <button class="toc-toggle">文章目录</button>
+                <nav class="toc" id="toc"></nav>
+            </aside>
+        </div>
+        
+    </div>
+
+
+    <!-- 返回主页链接 -->
+    <div class="text-center my-8">
+        <a href="/" class="text-hacker-color1 underline hover:text-hacker-color2">← Back to Home</a>
+    </div>
+
+      
+      <script src="/js/toc.js"></script>  <!-- 引入 TOC 逻辑 -->
+      
+      
+
+    <footer class="bg-black text-gray-400 py-4">
+ <div class="container mx-auto text-center">
+  <p>© <span id="current-year"></span>  John Doe 
+    <br> Powered by <a class="hover:text-white duration-150 hover:underline decoration-slice" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a class="hover:text-white duration-150 hover:underline decoration-slice" target="_blank" rel="noopener" href="https://github.com/m310ct/hexo-theme-hexploit">Hexpolit</a></p>
+ </div>
+</footer>
+
+<script> 
+ document.getElementById("current-year").textContent = new Date().getFullYear();
+</script>
+<script>
+window.MathJax = {
+tex: {
+  inlineMath: [['$', '$'], ['\\(', '\\)']]  // 启用 $...$ 和 \( ... \)
+},
+svg: {
+  fontCache: 'global'
+}
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+
+
+</body>
+</html>
