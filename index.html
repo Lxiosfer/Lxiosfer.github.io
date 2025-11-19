@@ -6,10 +6,45 @@
   <title>LXIOS</title>
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/tailwind.css">
-  <!-- <link rel="stylesheet" href="/css/search.css"> -->
+  <!-- 引入Three.js依赖映射 -->
+  <script type='importmap'>
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@~0.181/build/three.webgpu.js",
+        "three/webgpu": "https://unpkg.com/three@~0.181/build/three.webgpu.js",
+        "three/addons/": "https://unpkg.com/three@~0.181/examples/jsm/",
+        "three/tsl": "https://unpkg.com/three@~0.181/build/three.tsl.js",
+        "YCW_tsl_x": "https://cdn.jsdelivr.net/gh/ycw/tsl-x@2d5c6485feacb1dba942b3563e090725b83e2a34/src/index.js"
+      }
+    }
+  </script>
+  <style>
+    /* 背景Canvas样式 */
+    #webgpu-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1; /* 确保在内容下方 */
+    }
+    /* 调整原有样式以适应新背景 */
+    .bg-black {
+      background: transparent;
+    }
+    .post-item a {
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+    }
+    h1, .post-title, .post-meta, .post-excerpt {
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+    }
+    /* 大标题保留原始青绿渐变高亮（不修改） */
+  </style>
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="bg-black">
+  <!-- WebGPU背景Canvas -->
+  <canvas id="webgpu-bg"></canvas>
+
   <!-- 顶部导航栏 -->
   <div class="sticky top-0 z-50">
     
@@ -155,7 +190,8 @@
   
   <main class="w-screen min-h-screen container mx-auto">
     <!-- 欢迎页面 -->
-    <div class="min-h-screen bg-black text-center flex flex-col justify-center items-center h-screen">
+    <div class="min-h-screen text-center flex flex-col justify-center items-center h-screen">
+        <!-- 大标题：完全保留原始弹跳和青绿渐变效果 -->
         <h1 class="
         text-hacker-color2 font-dos md:text-huge text-3xl text-wrap animate-bounce select-none bg-red-400 md:min-h-[5rem] md:leading-[5rem] 
         bg-gradient-to-r from-hacker-color1 to-hacker-color2 bg-clip-text text-transparent md:-mt-80 -mt-40
@@ -600,7 +636,170 @@ svg: {
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 
 
-</body>
-<script src="./js/scroll.js"></script>
 
+  <script type="module">
+    import * as THREE from 'three/webgpu'
+    import { TSL as $ } from 'three/webgpu'
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+    import { bloom } from 'three/addons/tsl/display/BloomNode.js'
+    import { fxaa } from 'three/addons/tsl/display/FXAANode.js'
+    import { ssgi } from 'three/addons/tsl/display/SSGINode.js'
+    import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
+    import * as $$ from 'YCW_tsl_x'
+
+    // 使用指定的canvas元素
+    const canvas = document.getElementById('webgpu-bg')
+    const gui = new GUI({ autoPlace: false })
+    document.body.appendChild(gui.domElement)
+    gui.domElement.style.zIndex = '100' // 确保GUI在最上层
+
+    // 初始化渲染器
+    const renderer = await new THREE.WebGPURenderer({ 
+      canvas: canvas,
+      alpha: true 
+    }).init()
+    
+    const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+    const controls = new OrbitControls(camera, renderer.domElement)
+
+    // 保留原始相机位置（不改变视角）
+    camera.position.set(2, 1, 1)
+    controls.target.set(0, 0.5, 0)
+    renderer.shadowMap.enabled = true
+
+    // 灯光设置（保持不变）
+    const light0 = new THREE.SpotLight('white', 2, 10, Math.PI / 8, 0.5)
+    light0.position.set(2, 2, 2)
+    light0.castShadow = true
+    scene.add(light0)
+    
+    const light1 = new THREE.HemisphereLight('skyblue', 'wheat', 0) 
+    scene.add(light1)
+    gui.add(light1, 'intensity', 0, 1).name('light1.intensity')
+
+    // 轮子材质（保持不变）
+    const mat = new THREE.MeshPhysicalNodeMaterial({ 
+      side: THREE.DoubleSide, 
+      transparent: true, 
+      alphaTest: 0.2 
+    })
+    const t = $.time.mul(4)
+    const offset_y = $.sin(t).abs().mul(0.5).add($.cos(t).abs().mul(0.5))
+    const rotation = new THREE.Euler(0, 0, t)
+    mat.positionNode = $.rotate($.positionLocal, rotation).add($.vec3(0, offset_y, 0))
+    mat.normalNode = $.transformNormalToView($.rotate($.normalLocal, rotation))
+
+    // 轮子外观（保持不变）
+    { 
+      const distance = $.uv().distance(0.5)
+      const wheel_mid = 0.35
+      const wheel_breadth = 0.2
+      const mask_breadth = 0.1
+      const mask = distance.distance(wheel_mid)
+        .div(wheel_breadth).clamp(0, 1).oneMinus()
+        .smoothstep(0.5 - mask_breadth, 0.5 + mask_breadth)
+      const t = $.time
+      mat.colorNode = $.vec4($.mx_noise_vec3($.uv().add(t)).remap(-1, 1, 0, 1), mask)
+      mat.emissiveNode = mat.colorNode
+    }
+
+    // 创建轮子网格：核心修改 - 动态计算居中位置
+    const mesh = new THREE.Mesh(new THREE.BoxGeometry(), mat)
+    mesh.castShadow = mesh.receiveShadow = true
+    scene.add(mesh)
+
+    // 计算物体居中位置的核心函数
+    function updateMeshCenter() {
+      // 获取屏幕中心在3D空间中的坐标（基于当前相机视角）
+      const centerVec = new THREE.Vector3(0, 0, -1); // 相机前方
+      // 将屏幕中心方向转换为世界坐标方向
+      centerVec.unproject(camera);
+      // 计算从相机到目标点的方向向量
+      const dir = centerVec.sub(camera.position).normalize();
+      // 设定物体距离相机的距离（确保可见）
+      const distance = 2.2;
+      // 计算物体应该在的位置（相机位置 + 方向向量 * 距离）
+      const targetPos = new THREE.Vector3().copy(camera.position).add(dir.multiplyScalar(distance));
+      // 保持y轴高度不变（与原始一致）
+      targetPos.y = 0.5;
+      // 应用计算出的居中位置
+      mesh.position.copy(targetPos);
+    }
+
+    // 初始计算一次居中位置
+    updateMeshCenter();
+
+    // 环境房间（保持不变）
+    { 
+      const mat = new THREE.MeshPhysicalNodeMaterial({ side: THREE.BackSide })
+      const mesh = new THREE.Mesh(new THREE.BoxGeometry(1e3, 4, 4).translate(0, 2, 0), mat)
+      mesh.receiveShadow = true
+      scene.add(mesh)
+    }
+
+    // 后期处理（保持不变）
+    const pp = new THREE.PostProcessing(renderer)
+    { 
+      const aov_node = $.pass(scene, camera)
+      aov_node.setMRT($.mrt({
+        output: $.output,
+        diffuse_color: $.diffuseColor,
+        normal_color: $.directionToColor($.normalView)
+      }))
+      const aov_tex_output = aov_node.getTextureNode('output')
+      const aov_tex_diffuse_color = aov_node.getTextureNode('diffuse_color')
+      const aov_tex_depth = aov_node.getTextureNode('depth')
+      const aov_tex_normal_color = aov_node.getTextureNode('normal_color')
+      const aov_normal = $.sample((uv) => $.colorToDirection(aov_tex_normal_color.sample(uv)))
+      
+      // 带宽优化
+      aov_node.getTexture('diffuse_color').type = THREE.UnsignedByteType
+      aov_node.getTexture('normal_color').type = THREE.UnsignedByteType
+      
+      const ssgi_node = ssgi(aov_tex_output, aov_tex_depth, aov_normal, camera)
+      ssgi_node.sliceCount.value = 1
+      ssgi_node.stepCount.value = 12
+      gui.add(ssgi_node.sliceCount, 'value', 1, 4, 1).name('ssgi.sliceCount')
+      gui.add(ssgi_node.stepCount, 'value', 1, 32, 1).name('ssgi.stepCount')
+      
+      const ssgi_node_gi = ssgi_node.rgb
+      const ssgi_node_ao = ssgi_node.a
+      const output_color = $.vec4(
+        aov_tex_output.rgb.mul(ssgi_node_ao).add(aov_tex_diffuse_color.rgb.mul(ssgi_node_gi)),
+        aov_tex_output.a
+      )
+      
+      const bloom_node = bloom(output_color, 0.2, 0, 0)
+      const fxaa_node = fxaa(bloom_node.add(output_color))
+      pp.outputNode = $.vec4(fxaa_node.rgb, output_color.a)
+      
+      const params = { enable_ssgi: true }
+      gui.add(params, 'enable_ssgi').onChange((x) => {
+        pp.outputNode = x ? fxaa_node : aov_tex_output
+        pp.needsUpdate = true
+      })
+    }
+
+    // 动画循环：保持原有渲染逻辑，增加居中更新
+    renderer.setAnimationLoop(() => {
+      pp.render();
+    })
+
+    // 响应窗口大小变化：更新相机和物体居中位置
+    function onWindowResize() {
+      renderer.setPixelRatio(devicePixelRatio)
+      renderer.setSize(window.innerWidth, window.innerHeight, false)
+      camera.aspect = window.innerWidth / window.innerHeight
+      camera.updateProjectionMatrix()
+      // 窗口变化时重新计算物体居中位置
+      updateMeshCenter();
+    }
+    
+    window.addEventListener('resize', onWindowResize)
+    onWindowResize() // 初始化尺寸
+    controls.update()
+  </script>
+  <script src="./js/scroll.js"></script>
+</body>
 </html>
