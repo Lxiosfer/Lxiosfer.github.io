@@ -19,7 +19,7 @@
     }
   </script>
   <style>
-    /* 背景Canvas样式：强制覆盖整个网页可视区域 */
+    /* 背景Canvas样式 */
     #webgpu-bg {
       position: fixed;
       top: 0;
@@ -32,25 +32,91 @@
       background: transparent;
     }
     .post-item a {
-      background-color: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(4px);
+      background-color: rgba(0, 0, 0, 0.8); /* 增加不透明度提升文字对比 */
+      backdrop-filter: blur(6px); /* 增强模糊让文字更突出 */
     }
-    /* 文字去模糊：减少阴影模糊半径，增强清晰度 */
+    /* 文字清晰度优化：移除多余阴影，增强对比度 */
     h1, .post-title, .post-meta, .post-excerpt {
-      text-shadow: 0 0 1px rgba(0, 255, 127, 0.8); /* 缩小阴影范围，保留主题色阴影 */
+      text-shadow: 0 0 1px rgba(0, 255, 127, 0.9); /* 极细阴影仅增强边缘 */
     }
-    /* 确保欢迎页面区域与3D场景可视范围对齐 */
     .welcome-section {
       position: relative;
       z-index: 10;
     }
-    /* 统一文字渐变样式（保持主题色） */
     .text-gradient {
       background: linear-gradient(90deg, var(--hacker-color1), var(--hacker-color2));
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
-      text-shadow: 0 0 2px rgba(0, 255, 127, 0.6); /* 减少发光模糊 */
+      text-shadow: 0 0 1px rgba(0, 255, 127, 0.7);
+    }
+
+    /* 控制窗口样式 */
+    .control-panel {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 300px;
+      background: rgba(0, 0, 0, 0.9);
+      border: 1px solid var(--hacker-color1);
+      border-radius: 8px;
+      padding: 15px;
+      z-index: 100;
+      color: var(--hacker-color2);
+      font-family: monospace;
+      box-shadow: 0 0 10px rgba(0, 255, 127, 0.3);
+    }
+    .control-panel h3 {
+      margin: 0 0 15px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--hacker-color1);
+      text-align: center;
+    }
+    .control-group {
+      margin-bottom: 15px;
+    }
+    .control-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    .control-group input {
+      width: 100%;
+      background: rgba(30, 30, 30, 0.8);
+      border: 1px solid var(--hacker-color1);
+      color: var(--hacker-color2);
+      padding: 5px;
+      border-radius: 4px;
+    }
+    .control-panel button {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--hacker-color1);
+      color: var(--hacker-color2);
+      padding: 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .control-panel button:hover {
+      background: rgba(0, 255, 127, 0.2);
+    }
+    .panel-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.9);
+      border: 1px solid var(--hacker-color1);
+      border-radius: 50%;
+      z-index: 101;
+      color: var(--hacker-color2);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(0, 255, 127, 0.3);
     }
   </style>
 <meta name="generator" content="Hexo 7.3.0"></head>
@@ -58,6 +124,46 @@
 <body class="bg-black">
   <!-- WebGPU背景Canvas -->
   <canvas id="webgpu-bg"></canvas>
+
+  <!-- 控制窗口开关 -->
+  <div class="panel-toggle" id="panelToggle">⚙️</div>
+  
+  <!-- 控制窗口 -->
+  <div class="control-panel" id="controlPanel" style="display: none;">
+    <h3>效果控制</h3>
+    
+    <!-- 灯光控制 -->
+    <div class="control-group">
+      <h4>灯光设置</h4>
+      <label>灯光强度: <span id="lightIntensityValue">2</span></label>
+      <input type="range" id="lightIntensity" min="0" max="5" step="0.1" value="2">
+      
+      <label>灯光颜色</label>
+      <input type="color" id="lightColor" value="#ffffff">
+    </div>
+    
+    <!-- 渲染效果控制 -->
+    <div class="control-group">
+      <h4>渲染效果</h4>
+      <label>Bloom强度: <span id="bloomValue">0.15</span></label>
+      <input type="range" id="bloomIntensity" min="0" max="1" step="0.05" value="0.15">
+      
+      <label>模糊程度: <span id="blurValue">0</span></label>
+      <input type="range" id="blurAmount" min="0" max="1" step="0.05" value="0">
+    </div>
+    
+    <!-- 颜色渐变控制 -->
+    <div class="control-group">
+      <h4>颜色设置</h4>
+      <label>渐变颜色1</label>
+      <input type="color" id="gradientColor1" value="#00ff7f">
+      
+      <label>渐变颜色2</label>
+      <input type="color" id="gradientColor2" value="#00ffff">
+    </div>
+    
+    <button id="resetDefaults">重置默认值</button>
+  </div>
 
   <!-- 顶部导航栏 -->
   <div class="sticky top-0 z-50">
@@ -595,6 +701,13 @@ svg: {
     import { ssgi } from 'three/addons/tsl/display/SSGINode.js'
 
     const canvas = document.getElementById('webgpu-bg')
+    const controlPanel = document.getElementById('controlPanel')
+    const panelToggle = document.getElementById('panelToggle')
+
+    // 控制窗口切换
+    panelToggle.addEventListener('click', () => {
+      controlPanel.style.display = controlPanel.style.display === 'none' ? 'block' : 'none';
+    })
 
     // 初始化渲染器
     const renderer = await new THREE.WebGPURenderer({ 
@@ -604,7 +717,6 @@ svg: {
     }).init()
     
     const scene = new THREE.Scene()
-    // 保持原有相机参数
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
     const controls = new OrbitControls(camera, renderer.domElement)
     controls.enablePan = false
@@ -614,7 +726,7 @@ svg: {
     controls.target.set(0, 0.5, 0)
     renderer.shadowMap.enabled = true
 
-    // 灯光设置（不变）
+    // 灯光设置（可控制）
     const light0 = new THREE.SpotLight('white', 2, 10, Math.PI / 8, 0.5)
     light0.position.set(2, 2, 2)
     light0.castShadow = true
@@ -623,7 +735,7 @@ svg: {
     const light1 = new THREE.HemisphereLight('skyblue', 'wheat', 0) 
     scene.add(light1)
 
-    // 轮子材质（不变）
+    // 轮子材质
     const mat = new THREE.MeshPhysicalNodeMaterial({ 
       side: THREE.DoubleSide, 
       transparent: true, 
@@ -635,7 +747,7 @@ svg: {
     mat.positionNode = $.rotate($.positionLocal, rotation).add($.vec3(0, offset_y, 0))
     mat.normalNode = $.transformNormalToView($.rotate($.normalLocal, rotation))
 
-    // 轮子外观（不变）
+    // 轮子外观
     { 
       const distance = $.uv().distance(0.5)
       const wheel_mid = 0.35
@@ -654,25 +766,20 @@ svg: {
     mesh.scale.set(1.2, 1.2, 1.2)
     scene.add(mesh)
 
-    // 核心调整：物体位置精确居中到页面视觉中心
+    // 物体位置居中
     function alignWithWebLayout() {
-      // 直接以窗口可视区域中心为基准（视觉中心）
       const viewportCenterX = window.innerWidth / 2;
       const viewportCenterY = window.innerHeight / 2;
       
-      // 转换为Three.js归一化设备坐标（NDC）
       const ndcX = (viewportCenterX / window.innerWidth) * 2 - 1;
       const ndcY = -(viewportCenterY / window.innerHeight) * 2 + 1;
       
-      // 转换为3D空间坐标
       const center = new THREE.Vector3(ndcX, ndcY, 0.5);
       center.unproject(camera);
       
-      // 计算从相机到中心的方向，保持固定距离
       const dir = new THREE.Vector3().subVectors(center, camera.position).normalize();
-      const distance = 2.0; // 保持原有距离
+      const distance = 2.0;
       
-      // 设置物体到视觉中心
       const targetPos = new THREE.Vector3()
         .copy(camera.position)
         .add(dir.multiplyScalar(distance));
@@ -680,7 +787,7 @@ svg: {
       mesh.position.copy(targetPos);
     }
 
-    // 环境房间（不变）
+    // 环境房间
     { 
       const mat = new THREE.MeshPhysicalNodeMaterial({ side: THREE.BackSide })
       const pageHeight = document.body.scrollHeight
@@ -692,9 +799,13 @@ svg: {
       scene.add(mesh)
     }
 
-    // 后期处理：轻微降低bloom强度，减少对文字的模糊影响
+    // 后期处理参数（可控制）
+    let bloomIntensity = 0.15;
+    let blurAmount = 0;
+
+    // 后期处理
     const pp = new THREE.PostProcessing(renderer)
-    { 
+    const updatePostProcessing = () => {
       const aov_node = $.pass(scene, camera)
       aov_node.setMRT($.mrt({
         output: $.output,
@@ -721,34 +832,110 @@ svg: {
         aov_tex_output.a
       )
       
-      // 降低bloom强度，减少对文字的模糊干扰
-      const bloom_node = bloom(output_color, 0.15, 0, 0)
+      // 应用可调节的bloom参数
+      const bloom_node = bloom(output_color, bloomIntensity, blurAmount, 0)
       const fxaa_node = fxaa(bloom_node.add(output_color))
       pp.outputNode = $.vec4(fxaa_node.rgb, output_color.a)
     }
+    updatePostProcessing();
 
-    // 动画循环（不变）
+    // 动画循环
     renderer.setAnimationLoop(() => {
       pp.render();
     })
 
-    // 窗口适配（不变）
+    // 窗口适配
     function onWindowResize() {
       const { innerWidth, innerHeight } = window
       renderer.setPixelRatio(devicePixelRatio)
       renderer.setSize(innerWidth, innerHeight, false)
       camera.aspect = innerWidth / innerHeight
       camera.updateProjectionMatrix()
-      alignWithWebLayout() // 窗口变化时重新居中
+      alignWithWebLayout()
     }
     
-    // 初始化适配
+    // 控制逻辑
+    const lightIntensity = document.getElementById('lightIntensity')
+    const lightIntensityValue = document.getElementById('lightIntensityValue')
+    const lightColor = document.getElementById('lightColor')
+    const bloomIntensityCtrl = document.getElementById('bloomIntensity')
+    const bloomValue = document.getElementById('bloomValue')
+    const blurAmountCtrl = document.getElementById('blurAmount')
+    const blurValue = document.getElementById('blurValue')
+    const gradientColor1 = document.getElementById('gradientColor1')
+    const gradientColor2 = document.getElementById('gradientColor2')
+    const resetDefaults = document.getElementById('resetDefaults')
+
+    // 灯光强度控制
+    lightIntensity.addEventListener('input', (e) => {
+      const value = parseFloat(e.target.value)
+      light0.intensity = value
+      lightIntensityValue.textContent = value.toFixed(1)
+    })
+
+    // 灯光颜色控制
+    lightColor.addEventListener('input', (e) => {
+      light0.color.set(e.target.value)
+    })
+
+    // Bloom强度控制
+    bloomIntensityCtrl.addEventListener('input', (e) => {
+      bloomIntensity = parseFloat(e.target.value)
+      bloomValue.textContent = bloomIntensity.toFixed(2)
+      updatePostProcessing()
+    })
+
+    // 模糊程度控制
+    blurAmountCtrl.addEventListener('input', (e) => {
+      blurAmount = parseFloat(e.target.value)
+      blurValue.textContent = blurAmount.toFixed(2)
+      updatePostProcessing()
+    })
+
+    // 渐变颜色控制
+    function updateGradientColors() {
+      const style = document.documentElement.style
+      style.setProperty('--hacker-color1', gradientColor1.value)
+      style.setProperty('--hacker-color2', gradientColor2.value)
+    }
+    gradientColor1.addEventListener('input', updateGradientColors)
+    gradientColor2.addEventListener('input', updateGradientColors)
+
+    // 重置默认值
+    resetDefaults.addEventListener('click', () => {
+      // 重置灯光
+      lightIntensity.value = 2
+      light0.intensity = 2
+      lightIntensityValue.textContent = '2'
+      lightColor.value = '#ffffff'
+      light0.color.set('#ffffff')
+      
+      // 重置渲染
+      bloomIntensity = 0.15
+      bloomIntensityCtrl.value = 0.15
+      bloomValue.textContent = '0.15'
+      blurAmount = 0
+      blurAmountCtrl.value = 0
+      blurValue.textContent = '0'
+      updatePostProcessing()
+      
+      // 重置颜色
+      gradientColor1.value = '#00ff7f'
+      gradientColor2.value = '#00ffff'
+      updateGradientColors()
+    })
+
+    // 初始化
     window.addEventListener('load', () => {
+      // 初始化CSS变量
+      document.documentElement.style.setProperty('--hacker-color1', '#00ff7f')
+      document.documentElement.style.setProperty('--hacker-color2', '#00ffff')
+      
       onWindowResize()
-      setTimeout(alignWithWebLayout, 100) // 确保DOM加载后居中
+      setTimeout(alignWithWebLayout, 100)
     })
     window.addEventListener('resize', onWindowResize)
-    window.addEventListener('scroll', alignWithWebLayout) // 滚动时保持居中
+    window.addEventListener('scroll', alignWithWebLayout)
     controls.update()
   </script>
   <script src="./js/scroll.js"></script>
