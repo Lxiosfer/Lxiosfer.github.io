@@ -19,44 +19,49 @@
     }
   </script>
   <style>
-    /* 全局背景Canvas：强制覆盖整个页面，固定定位不随滚动移动 */
+    /* 背景Canvas样式：强制覆盖整个网页可视区域 */
     #webgpu-bg {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: -1; /* 确保在所有内容下方 */
+      z-index: -1;
       width: 100vw;
       height: 100vh;
-      /* 防止滚动条出现 */
-      overflow: hidden;
     }
-    /* 页面内容容器：确保内容在背景上方 */
-    .page-content {
+    .bg-black {
+      background: transparent;
+    }
+    .post-item a {
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+    }
+    /* 文字去模糊：减少阴影模糊半径，增强清晰度 */
+    h1, .post-title, .post-meta, .post-excerpt {
+      text-shadow: 0 0 1px rgba(0, 255, 127, 0.8); /* 缩小阴影范围，保留主题色阴影 */
+    }
+    /* 确保欢迎页面区域与3D场景可视范围对齐 */
+    .welcome-section {
       position: relative;
       z-index: 10;
     }
-    .bg-black {
-      background: transparent; /* 移除原有黑色背景，露出3D背景 */
-    }
-    .post-item a {
-      background-color: rgba(0, 0, 0, 0.7); /* 保留内容区域半透明背景，增强可读性 */
-      backdrop-filter: blur(4px);
-    }
-    h1, .post-title, .post-meta, .post-excerpt {
-      text-shadow: 0 0 4px rgba(0, 0, 0, 0.8); /* 增强文字与背景的对比度 */
+    /* 统一文字渐变样式（保持主题色） */
+    .text-gradient {
+      background: linear-gradient(90deg, var(--hacker-color1), var(--hacker-color2));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 2px rgba(0, 255, 127, 0.6); /* 减少发光模糊 */
     }
   </style>
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="bg-black">
-  <!-- WebGPU全局背景Canvas -->
+  <!-- WebGPU背景Canvas -->
   <canvas id="webgpu-bg"></canvas>
 
-  <!-- 页面内容容器（所有内容放在这里，确保在背景上方） -->
-  <div class="page-content">
-    <!-- 顶部导航栏 -->
-    <div class="sticky top-0 z-50 bg-black/70 backdrop-blur-md">
-      
+  <!-- 顶部导航栏 -->
+  <div class="sticky top-0 z-50">
+    
 <header class="bg-black text-hacker-white py-4 font-dos font-extrabold">
     <div class="container mx-auto flex items-center justify-between space-x-8">
     
@@ -195,106 +200,107 @@
   </script>
 
 
+  </div>
+  
+  <main class="w-screen min-h-screen container mx-auto">
+    <!-- 欢迎页面 -->
+    <div class="welcome-section min-h-screen text-center flex flex-col justify-center items-center h-screen">
+        <h1 class="text-gradient font-dos md:text-huge text-3xl text-wrap animate-bounce select-none md:min-h-[5rem] md:leading-[5rem] md:-mt-80 -mt-40">
+          Wellcum to LXIOSs BLOG
+        </h1>
+        <hr class="w-[85%] border-t-2 border-line-color border-dashed">
+        
+        <p class="text-hacker-color2 md:mt-40 mt-20 md:text-2xl text-lg text-wrap font-dos w-[70%] select-none">
+          If someone is unable to perform a task, if a criminal is afraid of being invincible, then the same goes for learning 
+        </p>
+
+        <!-- 下拉按钮 -->
+        <svg id="down-btn" class="icon w-16 h-16 absolute top-[75%] hover:-translate-y-1 transition-all cursor-pointer" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#bbbbbb">
+          <path d="M185.884 327.55 146.3 367.133 512.021 732.779 877.7 367.133 838.117 327.55 511.997 653.676Z"></path>
+        </svg>
     </div>
-    
-    <main class="w-screen min-h-screen container mx-auto">
-      <!-- 欢迎页面 -->
-      <div class="min-h-screen text-center flex flex-col justify-center items-center h-screen">
-          <h1 class="
-          text-hacker-color2 font-dos md:text-huge text-3xl text-wrap animate-bounce select-none bg-red-400 md:min-h-[5rem] md:leading-[5rem] 
-          bg-gradient-to-r from-hacker-color1 to-hacker-color2 bg-clip-text text-transparent md:-mt-80 -mt-40
-          ">Wellcum to LXIOSs BLOG</h1>
-          <hr class="w-[85%] border-t-2 border-line-color border-dashed">
-          
-          <p class="text-hacker-color2 md:mt-40 mt-20 md:text-2xl text-lg text-wrap font-dos w-[70%] select-none">If someone is unable to perform a task, if a criminal is afraid of being invincible, then the same goes for learning </p>
 
-          <!-- 下拉按钮 -->
-          <svg id="down-btn" class="icon w-16 h-16 absolute top-[75%] hover:-translate-y-1 transition-all cursor-pointer" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#bbbbbb">
-            <path d="M185.884 327.55 146.3 367.133 512.021 732.779 877.7 367.133 838.117 327.55 511.997 653.676Z"></path>
-          </svg>
-      </div>
-
-      <!-- 博客文章与侧边栏 -->
-      <div class="min-h-screen flex gap-8" id="scr-target">
-        <div class="w-full">
-          
-            <div class="post-item group border-b border-b-hacker-color3 ">
-              <a href="/2025/11/16/C-%E5%A4%8D%E4%B9%A0-1-0-C-%E7%9A%84%E8%BF%90%E8%A1%8C-C-%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E8%BF%90%E8%A1%8C-C-%E9%93%BE%E6%8E%A5%E5%99%A8%E7%9A%84%E8%BF%90%E8%A1%8C/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
-                <h2 class="post-title text-hacker-color1 group-hover:text-white font-bold text-2xl">C++复习/1.0/C++的运行_C++编译器的运行_C++链接器的运行</h2>
-                <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-16</p>
-                <p class="post-excerpt text-hacker-color3 group-hover:text-white">C++重构&amp;#x2F;复习Part1  c++是如何工作的Include 找到一个文件拷贝到现在这个文件里（在编译前）
+    <!-- 博客文章与侧边栏 -->
+    <div class="min-h-screen flex gap-8" id="scr-target">
+      <div class="w-full">
+        
+          <div class="post-item group border-b border-b-hacker-color3 ">
+            <a href="/2025/11/16/C-%E5%A4%8D%E4%B9%A0-1-0-C-%E7%9A%84%E8%BF%90%E8%A1%8C-C-%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E8%BF%90%E8%A1%8C-C-%E9%93%BE%E6%8E%A5%E5%99%A8%E7%9A%84%E8%BF%90%E8%A1%8C/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
+              <h2 class="post-title text-gradient group-hover:text-white font-bold text-2xl">C++复习/1.0/C++的运行_C++编译器的运行_C++链接器的运行</h2>
+              <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-16</p>
+              <p class="post-excerpt text-hacker-color3 group-hover:text-white">C++重构&amp;#x2F;复习Part1  c++是如何工作的Include 找到一个文件拷贝到现在这个文件里（在编译前）
 Main这个函数比较特殊，没有返回值时，默认返回0，仅限此函数
 &amp;lt;&amp;lt;重载运算符，也是类似一个函数，也有参数例如std::cout&amp;lt;&amp;lt;”666”&amp;lt;&amp;lt;std::endl里面的666就是参数或者另一层含义是把字符串666推（push）到cout流中，再打印到终端，再推送一个行结束符
 Cin.get()是等我们按下enter键在前往下一条命令前等待，这时程序暂停执行，直到按下回车就继续执行
 怎么把它转换成一个二进制文件？【1】预处理。（其实也算是编...</p>
-              </a>
-            </div>
-          
-            <div class="post-item group border-b border-b-hacker-color3 ">
-              <a href="/2025/11/10/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80-1-0%E6%8C%87%E9%92%88/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
-                <h2 class="post-title text-hacker-color1 group-hover:text-white font-bold text-2xl">C语言基础/1.0指针</h2>
-                <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-10</p>
-                <p class="post-excerpt text-hacker-color3 group-hover:text-white">...</p>
-              </a>
-            </div>
-          
-            <div class="post-item group border-b border-b-hacker-color3 ">
-              <a href="/2025/11/09/%E5%AF%86%E7%A0%81%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95-1-1%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95-%E8%B4%9D%E7%A5%96%E5%AE%9A%E7%90%86-%E6%8B%93%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
-                <h2 class="post-title text-hacker-color1 group-hover:text-white font-bold text-2xl">密码相关算法/1.1欧几里得算法_贝祖定理_拓展欧几里得算法</h2>
-                <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-09</p>
-                <p class="post-excerpt text-hacker-color3 group-hover:text-white">...</p>
-              </a>
-            </div>
-          
-            <div class="post-item group border-b border-b-hacker-color3 ">
-              <a href="/2025/11/09/%E5%AF%86%E7%A0%81%E5%89%8D%E7%BD%AE%E6%95%B0%E5%AD%A6-1-0%E6%A8%A1%E8%BF%90%E7%AE%97/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
-                <h2 class="post-title text-hacker-color1 group-hover:text-white font-bold text-2xl">密码前置数学/1.0模运算</h2>
-                <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-09</p>
-                <p class="post-excerpt text-hacker-color3 group-hover:text-white">...</p>
-              </a>
-            </div>
-          
-            <div class="post-item group border-b border-b-hacker-color3 ">
-              <a href="/2025/11/09/%E5%AF%86%E7%A0%81%E5%9F%BA%E7%A1%80-1-0%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
-                <h2 class="post-title text-hacker-color1 group-hover:text-white font-bold text-2xl">密码基础/1.0古典密码</h2>
-                <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-09</p>
-                <p class="post-excerpt text-hacker-color3 group-hover:text-white">...</p>
-              </a>
-            </div>
-          
-            <div class="post-item group border-b border-b-hacker-color3 ">
-              <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-5%E5%A0%86%E6%A0%88%E6%8F%90%E5%8D%87-%E5%A0%86%E6%A0%88%E5%9B%BE/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
-                <h2 class="post-title text-hacker-color1 group-hover:text-white font-bold text-2xl">初见二进制/汇编/1.5堆栈提升_堆栈图</h2>
-                <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-09</p>
-                <p class="post-excerpt text-hacker-color3 group-hover:text-white">...</p>
-              </a>
-            </div>
-          
-            <div class="post-item group border-b border-b-hacker-color3 ">
-              <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-4%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8-JCC/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
-                <h2 class="post-title text-hacker-color1 group-hover:text-white font-bold text-2xl">初见二进制/汇编/1.4标志寄存器_JCC</h2>
-                <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-09</p>
-                <p class="post-excerpt text-hacker-color3 group-hover:text-white">根据教程视频，以下均以32位计算机为例Push的时候是立即数就永远-4Push 寄存器时，al（八位），不行Push ax（16位） 可以，会-2Push32位寄存器&amp;#x2F;容器，会-4也可以push一块内存（dword），把这内存的值push到目标位置（同样-4）Push word，则-2Push的是跟容器的宽度一样的，同样内存也不能push八位
+            </a>
+          </div>
+        
+          <div class="post-item group border-b border-b-hacker-color3 ">
+            <a href="/2025/11/10/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80-1-0%E6%8C%87%E9%92%88/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
+              <h2 class="post-title text-gradient group-hover:text-white font-bold text-2xl">C语言基础/1.0指针</h2>
+              <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-10</p>
+              <p class="post-excerpt text-hacker-color3 group-hover:text-white">...</p>
+            </a>
+          </div>
+        
+          <div class="post-item group border-b border-b-hacker-color3 ">
+            <a href="/2025/11/09/%E5%AF%86%E7%A0%81%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95-1-1%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95-%E8%B4%9D%E7%A5%96%E5%AE%9A%E7%90%86-%E6%8B%93%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
+              <h2 class="post-title text-gradient group-hover:text-white font-bold text-2xl">密码相关算法/1.1欧几里得算法_贝祖定理_拓展欧几里得算法</h2>
+              <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-09</p>
+              <p class="post-excerpt text-hacker-color3 group-hover:text-white">...</p>
+            </a>
+          </div>
+        
+          <div class="post-item group border-b border-b-hacker-color3 ">
+            <a href="/2025/11/09/%E5%AF%86%E7%A0%81%E5%89%8D%E7%BD%AE%E6%95%B0%E5%AD%A6-1-0%E6%A8%A1%E8%BF%90%E7%AE%97/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
+              <h2 class="post-title text-gradient group-hover:text-white font-bold text-2xl">密码前置数学/1.0模运算</h2>
+              <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-09</p>
+              <p class="post-excerpt text-hacker-color3 group-hover:text-white">...</p>
+            </a>
+          </div>
+        
+          <div class="post-item group border-b border-b-hacker-color3 ">
+            <a href="/2025/11/09/%E5%AF%86%E7%A0%81%E5%9F%BA%E7%A1%80-1-0%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
+              <h2 class="post-title text-gradient group-hover:text-white font-bold text-2xl">密码基础/1.0古典密码</h2>
+              <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-09</p>
+              <p class="post-excerpt text-hacker-color3 group-hover:text-white">...</p>
+            </a>
+          </div>
+        
+          <div class="post-item group border-b border-b-hacker-color3 ">
+            <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-5%E5%A0%86%E6%A0%88%E6%8F%90%E5%8D%87-%E5%A0%86%E6%A0%88%E5%9B%BE/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
+              <h2 class="post-title text-gradient group-hover:text-white font-bold text-2xl">初见二进制/汇编/1.5堆栈提升_堆栈图</h2>
+              <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-09</p>
+              <p class="post-excerpt text-hacker-color3 group-hover:text-white">...</p>
+            </a>
+          </div>
+        
+          <div class="post-item group border-b border-b-hacker-color3 ">
+            <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-4%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8-JCC/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
+              <h2 class="post-title text-gradient group-hover:text-white font-bold text-2xl">初见二进制/汇编/1.4标志寄存器_JCC</h2>
+              <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-09</p>
+              <p class="post-excerpt text-hacker-color3 group-hover:text-white">根据教程视频，以下均以32位计算机为例Push的时候是立即数就永远-4Push 寄存器时，al（八位），不行Push ax（16位） 可以，会-2Push32位寄存器&amp;#x2F;容器，会-4也可以push一块内存（dword），把这内存的值push到目标位置（同样-4）Push word，则-2Push的是跟容器的宽度一样的，同样内存也不能push八位
 Pop同理无8位，按照宽度pop，ax就+2…..
 堆栈平衡Pushad指令把8个通用寄存器的值存到内存（堆栈）去了Popad指令把刚刚pushad的值又放回去了（你用pushad折腾完了想恢复原来的模样就popad一下）
 所需知识PE结构
 下...</p>
-              </a>
-            </div>
-          
-            <div class="post-item group border-b border-b-hacker-color3 ">
-              <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-3%E6%A0%88%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86-%E5%A0%86%E6%A0%88/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
-                <h2 class="post-title text-hacker-color1 group-hover:text-white font-bold text-2xl">初见二进制/汇编/1.3栈的初步认识_堆栈</h2>
-                <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-09</p>
-                <p class="post-excerpt text-hacker-color3 group-hover:text-white">结合wiki来简单认识栈...</p>
-              </a>
-            </div>
-          
-            <div class="post-item group border-b border-b-hacker-color3 ">
-              <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-2%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8-%E8%AE%A4%E8%AF%86%E6%8C%87%E4%BB%A4-%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
-                <h2 class="post-title text-hacker-color1 group-hover:text-white font-bold text-2xl">初见二进制/汇编/1.2通用寄存器_认识指令_内存读写</h2>
-                <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-09</p>
-                <p class="post-excerpt text-hacker-color3 group-hover:text-white">根据教程视频，以下均以32位计算机为例一.通用寄存器（32位计算机）
+            </a>
+          </div>
+        
+          <div class="post-item group border-b border-b-hacker-color3 ">
+            <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-3%E6%A0%88%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86-%E5%A0%86%E6%A0%88/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
+              <h2 class="post-title text-gradient group-hover:text-white font-bold text-2xl">初见二进制/汇编/1.3栈的初步认识_堆栈</h2>
+              <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-09</p>
+              <p class="post-excerpt text-hacker-color3 group-hover:text-white">结合wiki来简单认识栈...</p>
+            </a>
+          </div>
+        
+          <div class="post-item group border-b border-b-hacker-color3 ">
+            <a href="/2025/11/09/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-2%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8-%E8%AE%A4%E8%AF%86%E6%8C%87%E4%BB%A4-%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
+              <h2 class="post-title text-gradient group-hover:text-white font-bold text-2xl">初见二进制/汇编/1.2通用寄存器_认识指令_内存读写</h2>
+              <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-09</p>
+              <p class="post-excerpt text-hacker-color3 group-hover:text-white">根据教程视频，以下均以32位计算机为例一.通用寄存器（32位计算机）
 
 
 32位
@@ -380,22 +386,22 @@ EDX
 DX
 DH
 DL...</p>
-              </a>
-            </div>
-          
-            <div class="post-item group border-b border-b-hacker-color3 ">
-              <a href="/2025/11/08/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-1%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
-                <h2 class="post-title text-hacker-color1 group-hover:text-white font-bold text-2xl">初见二进制/汇编/1.1数据宽度_逻辑运算</h2>
-                <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-08</p>
-                <p class="post-excerpt text-hacker-color3 group-hover:text-white">根据教程视频，以下均以32位计算机为例一.数据宽度4位→可表示1位16进制0至F，以此类推。8位→2位16,00至FF16位→4位16,0000至FFFF32位→8位16,00000000至FFFFFFFF
+            </a>
+          </div>
+        
+          <div class="post-item group border-b border-b-hacker-color3 ">
+            <a href="/2025/11/08/%E5%88%9D%E8%A7%81%E4%BA%8C%E8%BF%9B%E5%88%B6-%E6%B1%87%E7%BC%96-1-1%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97/" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
+              <h2 class="post-title text-gradient group-hover:text-white font-bold text-2xl">初见二进制/汇编/1.1数据宽度_逻辑运算</h2>
+              <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">2025-11-08</p>
+              <p class="post-excerpt text-hacker-color3 group-hover:text-white">根据教程视频，以下均以32位计算机为例一.数据宽度4位→可表示1位16进制0至F，以此类推。8位→2位16,00至FF16位→4位16,0000至FFFF32位→8位16,00000000至FFFFFFFF
 人为定义有&amp;#x2F;无符号
 0 1 2 3 4 5 6 7 8 9 A B C D E F每个数怎么表示是可以定义来的，如顺序定义为0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15或补码定义0 1 2 3 4 5 6 7 -8 -7 -6 -5 -4 -3 -2 -1此处不做详解
 ”1开头为负数“的理解则代表后半部分能表示的数以一开头，而刚好此部分全被定义为负数...</p>
-              </a>
-            </div>
-          
-        </div>
+            </a>
+          </div>
         
+      </div>
+      
     <div class="w-1/3 hidden md:block space-y-4 mt-8">
       
         
@@ -553,11 +559,10 @@ DL...</p>
 
 
 
-      </div>
-    </main>
+    </div>
+  </main>
 
-    <!-- 页脚 -->
-    <footer class="bg-black text-gray-400 py-4">
+  <footer class="bg-black text-gray-400 py-4">
  <div class="container mx-auto text-center">
   <p>© <span id="current-year"></span>  John Doe 
     <br> Powered by <a class="hover:text-white duration-150 hover:underline decoration-slice" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a class="hover:text-white duration-150 hover:underline decoration-slice" target="_blank" rel="noopener" href="https://github.com/m310ct/hexo-theme-hexploit">Hexpolit</a></p>
@@ -580,7 +585,6 @@ svg: {
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 
 
-  </div>
 
   <script type="module">
     import * as THREE from 'three/webgpu'
@@ -592,7 +596,7 @@ svg: {
 
     const canvas = document.getElementById('webgpu-bg')
 
-    // 初始化渲染器：覆盖整个视口
+    // 初始化渲染器
     const renderer = await new THREE.WebGPURenderer({ 
       canvas: canvas,
       alpha: true,
@@ -600,27 +604,26 @@ svg: {
     }).init()
     
     const scene = new THREE.Scene()
-    // 相机设置：扩大视角范围，确保覆盖整个页面
-    const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 50)
+    // 保持原有相机参数
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
     const controls = new OrbitControls(camera, renderer.domElement)
     controls.enablePan = false
     controls.enableZoom = false
     controls.enableRotate = false
-    // 相机位置：后退一些，扩大视野范围，让背景效果更全局
-    camera.position.set(3, 2, 3)
-    controls.target.set(0, 1, 0) // 目标点略靠上，适配页面垂直中心
+    camera.position.set(2, 1, 1)
+    controls.target.set(0, 0.5, 0)
     renderer.shadowMap.enabled = true
 
-    // 全局灯光：确保整个背景都有均匀光照
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
-    scene.add(ambientLight)
+    // 灯光设置（不变）
+    const light0 = new THREE.SpotLight('white', 2, 10, Math.PI / 8, 0.5)
+    light0.position.set(2, 2, 2)
+    light0.castShadow = true
+    scene.add(light0)
     
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
-    directionalLight.position.set(5, 10, 7.5)
-    directionalLight.castShadow = true
-    scene.add(directionalLight)
+    const light1 = new THREE.HemisphereLight('skyblue', 'wheat', 0) 
+    scene.add(light1)
 
-    // 轮子材质（保持原有动画）
+    // 轮子材质（不变）
     const mat = new THREE.MeshPhysicalNodeMaterial({ 
       side: THREE.DoubleSide, 
       transparent: true, 
@@ -628,11 +631,11 @@ svg: {
     })
     const t = $.time.mul(4)
     const offset_y = $.sin(t).abs().mul(0.5).add($.cos(t).abs().mul(0.5))
-    const rotation = new THREE.Euler(0, t, t/2) // 增加旋转维度，让背景更生动
+    const rotation = new THREE.Euler(0, 0, t)
     mat.positionNode = $.rotate($.positionLocal, rotation).add($.vec3(0, offset_y, 0))
     mat.normalNode = $.transformNormalToView($.rotate($.normalLocal, rotation))
 
-    // 轮子外观（增强视觉效果，适配全局背景）
+    // 轮子外观（不变）
     { 
       const distance = $.uv().distance(0.5)
       const wheel_mid = 0.35
@@ -642,39 +645,54 @@ svg: {
         .div(wheel_breadth).clamp(0, 1).oneMinus()
         .smoothstep(0.5 - mask_breadth, 0.5 + mask_breadth)
       const t = $.time
-      // 颜色调整为更贴合黑客风格的青绿色系
-      const color = $.mx_noise_vec3($.uv().add(t)).remap(-1, 1, 0.2, 1)
-      mat.colorNode = $.vec4(0.2, color.x, color.y, mask) // 固定绿色调基础
-      mat.emissiveNode = $.vec4(0.1, color.y, color.z, mask) // 增加自发光效果
+      mat.colorNode = $.vec4($.mx_noise_vec3($.uv().add(t)).remap(-1, 1, 0, 1), mask)
+      mat.emissiveNode = mat.colorNode
     }
 
-    // 创建多个网格，形成全局背景效果（不只是单个物体）
-    const group = new THREE.Group()
-    // 中心主物体
-    const mainMesh = new THREE.Mesh(new THREE.BoxGeometry(1.5, 1.5, 1.5), mat)
-    mainMesh.position.set(0, 1, 0)
-    group.add(mainMesh)
-    
-    // 周围辅助物体（增强背景层次感）
-    for (let i = 0; i < 4; i++) {
-      const mesh = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.8, 0.8), mat)
-      const angle = (i / 4) * Math.PI * 2
-      mesh.position.set(Math.cos(angle) * 3, 1 + Math.sin(i) * 0.5, Math.sin(angle) * 3)
-      group.add(mesh)
-    }
-    scene.add(group)
+    // 创建轮子网格
+    const mesh = new THREE.Mesh(new THREE.BoxGeometry(), mat)
+    mesh.scale.set(1.2, 1.2, 1.2)
+    scene.add(mesh)
 
-    // 全局环境（无限大背景，避免看到边界）
+    // 核心调整：物体位置精确居中到页面视觉中心
+    function alignWithWebLayout() {
+      // 直接以窗口可视区域中心为基准（视觉中心）
+      const viewportCenterX = window.innerWidth / 2;
+      const viewportCenterY = window.innerHeight / 2;
+      
+      // 转换为Three.js归一化设备坐标（NDC）
+      const ndcX = (viewportCenterX / window.innerWidth) * 2 - 1;
+      const ndcY = -(viewportCenterY / window.innerHeight) * 2 + 1;
+      
+      // 转换为3D空间坐标
+      const center = new THREE.Vector3(ndcX, ndcY, 0.5);
+      center.unproject(camera);
+      
+      // 计算从相机到中心的方向，保持固定距离
+      const dir = new THREE.Vector3().subVectors(center, camera.position).normalize();
+      const distance = 2.0; // 保持原有距离
+      
+      // 设置物体到视觉中心
+      const targetPos = new THREE.Vector3()
+        .copy(camera.position)
+        .add(dir.multiplyScalar(distance));
+      
+      mesh.position.copy(targetPos);
+    }
+
+    // 环境房间（不变）
     { 
-      const mat = new THREE.MeshBasicMaterial({ 
-        color: 0x0a0a0a, // 深黑色背景，贴合黑客风格
-        side: THREE.BackSide 
-      })
-      const mesh = new THREE.Mesh(new THREE.SphereGeometry(50, 32, 32), mat)
+      const mat = new THREE.MeshPhysicalNodeMaterial({ side: THREE.BackSide })
+      const pageHeight = document.body.scrollHeight
+      const mesh = new THREE.Mesh(
+        new THREE.BoxGeometry(10, pageHeight, 10).translate(0, pageHeight/2, 0), 
+        mat
+      )
+      mesh.receiveShadow = true
       scene.add(mesh)
     }
 
-    // 后期处理：增强全局背景视觉效果
+    // 后期处理：轻微降低bloom强度，减少对文字的模糊影响
     const pp = new THREE.PostProcessing(renderer)
     { 
       const aov_node = $.pass(scene, camera)
@@ -699,38 +717,38 @@ svg: {
       const ssgi_node_gi = ssgi_node.rgb
       const ssgi_node_ao = ssgi_node.a
       const output_color = $.vec4(
-        aov_tex_output.rgb.mul(ssgi_node_ao).add(ssgi_node_gi.mul(1.2)), // 增强发光效果
+        aov_tex_output.rgb.mul(ssgi_node_ao).add(aov_tex_diffuse_color.rgb.mul(ssgi_node_gi)),
         aov_tex_output.a
       )
       
-      const bloom_node = bloom(output_color, 0.5, 0.2, 0.8) // 扩大光晕范围，适配全局背景
-      const fxaa_node = fxaa(bloom_node.add(output_color).mul(1.1)) // 增强对比度
-      pp.outputNode = $.vec4(fxaa_node.rgb, 1.0) // 不透明背景
+      // 降低bloom强度，减少对文字的模糊干扰
+      const bloom_node = bloom(output_color, 0.15, 0, 0)
+      const fxaa_node = fxaa(bloom_node.add(output_color))
+      pp.outputNode = $.vec4(fxaa_node.rgb, output_color.a)
     }
 
-    // 背景动画：增加整体旋转，让全局背景更有动感
-    function animateBackground() {
-      group.rotation.y += 0.002
-    }
-
-    // 动画循环
+    // 动画循环（不变）
     renderer.setAnimationLoop(() => {
-      animateBackground()
       pp.render();
     })
 
-    // 窗口适配：确保背景始终覆盖整个视口
+    // 窗口适配（不变）
     function onWindowResize() {
       const { innerWidth, innerHeight } = window
       renderer.setPixelRatio(devicePixelRatio)
       renderer.setSize(innerWidth, innerHeight, false)
       camera.aspect = innerWidth / innerHeight
       camera.updateProjectionMatrix()
+      alignWithWebLayout() // 窗口变化时重新居中
     }
     
-    // 初始化
-    window.addEventListener('load', onWindowResize)
+    // 初始化适配
+    window.addEventListener('load', () => {
+      onWindowResize()
+      setTimeout(alignWithWebLayout, 100) // 确保DOM加载后居中
+    })
     window.addEventListener('resize', onWindowResize)
+    window.addEventListener('scroll', alignWithWebLayout) // 滚动时保持居中
     controls.update()
   </script>
   <script src="./js/scroll.js"></script>
