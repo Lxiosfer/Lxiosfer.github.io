@@ -215,6 +215,30 @@
 <p>方向位寄存器DF（direction）<br>0则加（正方向）改变地址栈针这样<br>1则减（负方向）</p>
 <p>STOS：将AL&#x2F;AX&#x2F;EAX的值存到[EDI]指定的内存单元<br>一定要写ES:[EDI]<br>向EDI存多少，由前面要求的字，字节等决定，EDI的增长方向由D决定</p>
 <p>REP（repeat，重复）：按计数寄存器ECX中指定的次数重复执行后面写的指令（注意是十六进制的数字，记得换算，例如10是16）</p>
+<h3 id="补充：CF借位，最高位进行借位，则其值为1"><a href="#补充：CF借位，最高位进行借位，则其值为1" class="headerlink" title="补充：CF借位，最高位进行借位，则其值为1."></a>补充：CF借位，最高位进行借位，则其值为1.</h3><p>PF，以1的奇偶个数来取0或1，看的是最低有效字节！！！即为只检验最后一字节的奇偶<br>OF，有符号的溢出。符号位有进位，则1。最高有效位（紧挨符号位那个），有进位，则0；<br>以上两个的xor为OF值</p>
+<h3 id="想要改变cpu的行为，修改EIP寄存器（决定cpu下一行执行的代码-存储地址）"><a href="#想要改变cpu的行为，修改EIP寄存器（决定cpu下一行执行的代码-存储地址）" class="headerlink" title="想要改变cpu的行为，修改EIP寄存器（决定cpu下一行执行的代码&#x2F;存储地址）"></a>想要改变cpu的行为，修改EIP寄存器（决定cpu下一行执行的代码&#x2F;存储地址）</h3><p>Mov不可以改变eip，但可利用jmp改变eip！（没有附加条件）Jmp没法跳转！！唯一的作用就是修改eip！！！<br>本质是Cpu走的时候根据eip的值决定去哪里</p>
+<h3 id="哪些代码可以修改eip？"><a href="#哪些代码可以修改eip？" class="headerlink" title="哪些代码可以修改eip？"></a>哪些代码可以修改eip？</h3><p>Jmp（无条件直接走）<br>Jmp寄存器&#x2F;立即数</p>
+<p>Call指令（出去旅游）<br>记得下断点<br>Mov eip，同时也修改了ESP！把call下一行指令的地址（call地址加5（字节））压到栈里（返回地址）。Eip检查&#x2F;堆栈检查，调用程序时以及把返回地址压到堆栈里去了，检查就是检查返回地址是不是允许的那个值。</p>
+<p>Ret（return旅游回家）<br>Call与ret成对出现。<br>ret相当于pop eip（同样也不允许使用这个指令）</p>
+<h3 id="比较指令"><a href="#比较指令" class="headerlink" title="比较指令"></a>比较指令</h3><p>Cmp指令<br>用于比较两个数是否相等，第一个数是否比第二个数大，当s被更改时，则第一个数一定比第二个数小（因为最高位被更改了，即为溢出）<br>Cmp  r&#x2F;m，r&#x2F;m&#x2F;imm<br>不能同时为内存&#x2F;宽度要一样<br>当使用时，只改变标志寄存器的值<br>实质是相减来比较，相当于sub，但不改变寄存器的值，只更改标志寄存器。</p>
+<p>Test指令<br>一定程度上与cmp类似，两个目标进行AND操作，结果不保存（不更改除了标志寄存器外的东西）<br>常见用法：判断某个寄存器是否为空（全0），test eax，eax<br>因为只要存在一位不为0，那么计算结果不为0<br>可影响P（最后一个有效字节）…这个情景下主要还是看Z（是否为0）</p>
+<p>Jcc 注意有符号无符号和怎么跳的<br>不影响值，不影响堆栈，只影响eip，与jmp区别在于他加了跳转条件<br>不管上面指令是什么，它不认识，只要现在标志寄存器符合条件就跳！</p>
+<p>JE&#x2F;JZ，选其一，二者一样。jmp equal和jmp zero，意思为结果为零ZF&#x3D;1时跳转</p>
+<p>JNE&#x2F;JNZ，jmp not equals&#x2F;jmp not zero，ZF&#x3D;0时候跳转（就是结果不为0）</p>
+<p>JS，只要SF为1就跳（结果为负时跳转）</p>
+<p>JNS同理,SF&#x3D;0则跳转</p>
+<p>JP&#x2F;JPE，PF&#x3D;1时跳（结果中1的个数为偶数）</p>
+<p>JNP&#x2F;JPO,PF&#x3D;0</p>
+<p>JO，OF&#x3D;1,结果溢出了则跳转<br>JNO，结果非溢出跳转OF&#x3D;0</p>
+<p>JB&#x2F;JNAE小于时跳转CF&#x3D;1</p>
+<p>JNB&#x2F;JAE 大于等于CF&#x3D;0</p>
+<p>JBE&#x2F;JAE小于等于CF&#x3D;1&#x2F;ZF&#x3D;1</p>
+<p>JNBE&#x2F;JA，大于则跳转（无符号数），CF&#x3D;0&amp;&amp;ZF&#x3D;0</p>
+<p>JL&#x2F;JNGE小于则跳转（有符号数）SF!&#x3D;OF</p>
+<p>JNL&#x2F;JGE大于等于则跳转（有符号数）SF&#x3D;OF</p>
+<p>JLE&#x2F;JNG小于则跳转（有符号数）ZF&#x3D;1&#x2F;SF!&#x3D;OF</p>
+<p>JNLB&#x2F;JG大于则跳转（有符号数）ZF&#x3D;0&amp;&amp;SF&#x3D;OF</p>
+<p>b小于<br>Nlb不小于也不等于<br>G是大于的意思</p>
 
         </div>
         
